@@ -6,36 +6,36 @@ using ITWorkstationsInc.Model;
 
 namespace ITWorkstationsInc.Database
 {
-    class PCCaseDAO:DAO
+    class CpuV2DAO:DAO
     {
-        public const string TABLE_CASE = "CaseBox";
-        public const string COLUMN_CASE_ID = "CaseId";
-        public const string COLUMN_CASE_NAME = "CaseName";
-        public const string COLUMN_CASE_PRICE = "CasePrice";
+        public const string TABLE_CPUV2 = "CPUV2";
+        public const string COLUMN_CPUV2_ID = "CPUV2Id";
+        public const string COLUMN_CPUV2_NAME = "CPUV2Name";
+        public const string COLUMN_CPUV2_PRICE = "CPUV2Price";
 
-        private static PCCaseDAO instance = new PCCaseDAO();
+        private static CpuV2DAO instance = new CpuV2DAO();
 
-        private PCCaseDAO() : base()
+        private CpuV2DAO() : base()
         {
         }
 
-        public static PCCaseDAO getInstance()
+        public static CpuV2DAO getInstance()
         {
             if (instance == null)
             {
-                instance = new PCCaseDAO();
+                instance = new CpuV2DAO();
             }
             return instance;
         }
 
         //*************************************************************
-        //Get data CaseBox as Dictionary by CaseBox name
+        //Get data CPUV2 as Dictionary by CPUV2 name
         //*************************************************************
-        internal Dictionary<string, CaseBox> CaseBoxDictionary()
+        internal Dictionary<string, CPUV2> CPUV2Dictionary()
         {
-            Dictionary<string, CaseBox> dictionary = new Dictionary<string, CaseBox>();
+            Dictionary<string, CPUV2> dictionary = new Dictionary<string, CPUV2>();
 
-            var selectStmt = "SELECT * FROM " + TABLE_CASE + " ORDER BY " + COLUMN_CASE_NAME + " ASC;";
+            var selectStmt = "SELECT * FROM " + TABLE_CPUV2 + " ORDER BY " + COLUMN_CPUV2_NAME + " ASC;";
 
             try
             {
@@ -46,13 +46,13 @@ namespace ITWorkstationsInc.Database
                 {
                     while (result.Read())
                     {
-                        CaseBox caseBox = new CaseBox
+                        CPUV2 cpuv2 = new CPUV2
                         {
-                            CaseId = Convert.ToInt32((result[COLUMN_CASE_ID]).ToString()),
-                            CaseName = (string)result[COLUMN_CASE_NAME],
-                            CasePrice = (double)result[COLUMN_CASE_PRICE]
+                            Cpuv2Id = Convert.ToInt32((result[COLUMN_CPUV2_ID]).ToString()),
+                            Cpuv2Name = (string)result[COLUMN_CPUV2_NAME],
+                            Cpuv2Price = (double)result[COLUMN_CPUV2_PRICE]
                         };
-                        dictionary.Add(caseBox.CaseName, caseBox);
+                        dictionary.Add(cpuv2.Cpuv2Name, cpuv2);
                     }
                 }
                 return dictionary;
@@ -69,12 +69,12 @@ namespace ITWorkstationsInc.Database
         }
 
         //*******************************
-        //Get all CaseBox data
+        //Get all CPUV2 data
         //*******************************
-        public List<CaseBox> getData()
+        public List<CPUV2> getData()
         {
-            List<CaseBox> list = new List<CaseBox>();
-            var selectStmt = "SELECT * FROM " + TABLE_CASE + " ORDER BY " + COLUMN_CASE_NAME + " ASC;";
+            List<CPUV2> list = new List<CPUV2>();
+            var selectStmt = "SELECT * FROM " + TABLE_CPUV2 + " ORDER BY " + COLUMN_CPUV2_NAME + " ASC;";
 
             try
             {
@@ -85,13 +85,13 @@ namespace ITWorkstationsInc.Database
                 {
                     while (result.Read())
                     {
-                        CaseBox caseBox = new CaseBox
+                        CPUV2 cpuv2 = new CPUV2
                         {
-                            CaseId = Convert.ToInt32((result[COLUMN_CASE_ID]).ToString()),
-                            CaseName = (string)result[COLUMN_CASE_NAME],
-                            CasePrice = (double)result[COLUMN_CASE_PRICE]
+                            Cpuv2Id = Convert.ToInt32((result[COLUMN_CPUV2_ID]).ToString()),
+                            Cpuv2Name = (string)result[COLUMN_CPUV2_NAME],
+                            Cpuv2Price = (double)result[COLUMN_CPUV2_PRICE]
                         };
-                        list.Add(caseBox);
+                        list.Add(cpuv2);
                     }
                 }
                 return list;
@@ -108,23 +108,23 @@ namespace ITWorkstationsInc.Database
         }
 
         //*******************************
-        //Add new CaseBox data 
+        //Add new CPUV2 data 
         //*******************************
-        public bool addData(CaseBox caseBox)
+        public bool addData(CPUV2 cpuv2)
         {
-            string insertStmt = "INSERT INTO " + TABLE_CASE + " ("
-                    + COLUMN_CASE_NAME + ", "
-                    + COLUMN_CASE_PRICE + 
+            string insertStmt = "INSERT INTO " + TABLE_CPUV2 + " ("
+                    + COLUMN_CPUV2_NAME + ", "
+                    + COLUMN_CPUV2_PRICE +
                     " ) VALUES ( "
-                    + "@" + COLUMN_CASE_NAME + ", "
-                    + "@" + COLUMN_CASE_PRICE
+                    + "@" + COLUMN_CPUV2_NAME + ", "
+                    + "@" + COLUMN_CPUV2_PRICE
                     + " )";
             try
             {
                 SQLiteCommand sQLiteCommand = new SQLiteCommand(insertStmt, mSQLiteConnection);
                 OpenConnection();
-                sQLiteCommand.Parameters.AddWithValue(COLUMN_CASE_NAME, caseBox.CaseName);
-                sQLiteCommand.Parameters.AddWithValue(COLUMN_CASE_PRICE, caseBox.CasePrice);
+                sQLiteCommand.Parameters.AddWithValue(COLUMN_CPUV2_NAME, cpuv2.Cpuv2Name);
+                sQLiteCommand.Parameters.AddWithValue(COLUMN_CPUV2_PRICE, cpuv2.Cpuv2Price);
                 sQLiteCommand.ExecuteNonQuery();
                 return true;
             }
@@ -141,19 +141,19 @@ namespace ITWorkstationsInc.Database
 
 
         //*******************************
-        //Update CaseBox data
+        //Update CPUV2 data
         //*******************************
-        internal bool UpdateData(CaseBox caseBox)
+        internal bool UpdateData(CPUV2 cpuv2)
         {
-            String updateStmt = "UPDATE " + TABLE_CASE + " SET "
-                 + COLUMN_CASE_PRICE + " =@" + COLUMN_CASE_PRICE + " "
-                + " WHERE " + COLUMN_CASE_ID + " = " + caseBox.CaseId + " ";
+            String updateStmt = "UPDATE " + TABLE_CPUV2 + " SET "
+                 + COLUMN_CPUV2_PRICE + " =@" + COLUMN_CPUV2_PRICE + " "
+                + " WHERE " + COLUMN_CPUV2_ID + " = " + cpuv2.Cpuv2Id + " ";
 
             try
             {
                 SQLiteCommand sQLiteCommand = new SQLiteCommand(updateStmt, mSQLiteConnection);
                 OpenConnection();
-                sQLiteCommand.Parameters.Add(new SQLiteParameter(COLUMN_CASE_PRICE, caseBox.CasePrice));
+                sQLiteCommand.Parameters.Add(new SQLiteParameter(COLUMN_CPUV2_PRICE, cpuv2.Cpuv2Price));
                 sQLiteCommand.ExecuteNonQuery();
                 return true;
             }
@@ -169,11 +169,11 @@ namespace ITWorkstationsInc.Database
         }
 
         //*******************************
-        //Delete CaseBox data (hide)
+        //Delete CPUV2 data (hide)
         //*******************************
-        public bool DeleteData(CaseBox caseBox)
+        public bool DeleteData(CPUV2 cpuv2)
         {
-            string deleteStmt = "DELETE FROM " + TABLE_CASE + " WHERE " + COLUMN_CASE_ID + " = " + caseBox.CaseId + " ";
+            string deleteStmt = "DELETE FROM " + TABLE_CPUV2 + " WHERE " + COLUMN_CPUV2_ID + " = " + cpuv2.Cpuv2Id + " ";
 
             try
             {
@@ -197,26 +197,15 @@ namespace ITWorkstationsInc.Database
 
         public void CreateTable()
         {
-            String createStmt = "CREATE TABLE " + TABLE_CASE
-                    + "(" + COLUMN_CASE_ID + " INTEGER PRIMARY KEY, "
-                    + COLUMN_CASE_NAME + " TEXT UNIQUE NOT NULL, "
-                    + COLUMN_CASE_PRICE + " REAL NOT NULL )";
+            string createStmt = "CREATE TABLE " + TABLE_CPUV2
+                    + "(" + COLUMN_CPUV2_ID + " INTEGER PRIMARY KEY, "
+                    + COLUMN_CPUV2_NAME + " TEXT UNIQUE NOT NULL, "
+                    + COLUMN_CPUV2_PRICE + " REAL NOT NULL )";
 
             SQLiteCommand sQLiteCommand = new SQLiteCommand(createStmt, mSQLiteConnection);
             OpenConnection();
             sQLiteCommand.ExecuteNonQuery();
             CloseConnection();
         }
-
-        /*
-
-         CREATE TABLE "CaseBox" (
-            	"CaseId"	INTEGER NOT NULL UNIQUE,
-            	"CaseName"	TEXT NOT NULL,
-            	"CasePrice"	INTEGER NOT NULL,
-             	PRIMARY KEY("CaseId" AUTOINCREMENT)
-        );
- 
-         * */
     }
 }

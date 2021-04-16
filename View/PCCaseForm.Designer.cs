@@ -82,7 +82,7 @@ namespace ITWorkstationsInc.View
             this.buttonEditPCCaseData.Name = "buttonEditPCCaseData";
             this.buttonEditPCCaseData.Size = new System.Drawing.Size(87, 30);
             this.buttonEditPCCaseData.TabIndex = 1;
-            this.buttonEditPCCaseData.Text = "Edit";
+            this.buttonEditPCCaseData.Text = "Update";
             this.buttonEditPCCaseData.UseVisualStyleBackColor = true;
             this.buttonEditPCCaseData.Click += new System.EventHandler(this.buttonEditPCCaseData_Click);
             // 
@@ -141,13 +141,14 @@ namespace ITWorkstationsInc.View
             this.comboBoxAddPCCase.Name = "comboBoxAddPCCase";
             this.comboBoxAddPCCase.Size = new System.Drawing.Size(441, 23);
             this.comboBoxAddPCCase.TabIndex = 0;
+            this.comboBoxAddPCCase.SelectedIndexChanged += new System.EventHandler(this.comboBoxAddPCCase_SelectedIndexChanged);
             // 
             // PCCaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(205)))), ((int)(((byte)(112)))));
-            this.ClientSize = new System.Drawing.Size(737, 460);
+            this.ClientSize = new System.Drawing.Size(744, 461);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.PCCaseAddGroupBox);
             this.Name = "PCCaseForm";

@@ -10,25 +10,23 @@ using ITWorkstationsInc.Model;
 
 namespace ITWorkstationsInc.View
 {
-    public partial class PCCaseForm : Form
+    public partial class CPUV2Form : Form
     {
-
-        private static PCCaseForm instance;
+        private static CPUV2Form instance;
         FormITWorkstation formITWorkstation;
-        PCCaseDAO mPCCaseDAO = PCCaseDAO.getInstance();
-        Dictionary<string, CaseBox> mCaseBoxDictionary = new Dictionary<string, CaseBox>();
-
-        public PCCaseForm(FormITWorkstation formITWorkstation)
+        CpuV2DAO mCPUV2DAO = CpuV2DAO.getInstance();
+        Dictionary<string, CPUV2> itemDictionary = new Dictionary<string, CPUV2>();
+        public CPUV2Form(FormITWorkstation formITWorkstation)
         {
             this.formITWorkstation = formITWorkstation;
             InitializeComponent();
         }
 
-        public static PCCaseForm getInstance(FormITWorkstation formITWorkstation)
+        public static CPUV2Form getInstance(FormITWorkstation formITWorkstation)
         {
             if (instance == null)
             {
-                instance = new PCCaseForm(formITWorkstation);
+                instance = new CPUV2Form(formITWorkstation);
             }
             return instance;
         }
@@ -41,13 +39,13 @@ namespace ITWorkstationsInc.View
             }
             else
             {
-                instance = new PCCaseForm(formITWorkstation);
+                instance = new CPUV2Form(formITWorkstation);
 
             }
             instance.Show();
         }
 
-        private void PCCaseForm_Load(object sender, EventArgs e)
+        private void CPUV2Form_Load(object sender, EventArgs e)
         {
             initForm();
         }
@@ -55,11 +53,11 @@ namespace ITWorkstationsInc.View
         private void initForm()
         {
             List<string> NamesList = new List<string>();
-            mCaseBoxDictionary.Clear();
+            itemDictionary.Clear();
             try
             {
-                mCaseBoxDictionary = mPCCaseDAO.CaseBoxDictionary();
-                NamesList.AddRange(mCaseBoxDictionary.Keys);
+                itemDictionary = mCPUV2DAO.CPUV2Dictionary();
+                NamesList.AddRange(itemDictionary.Keys);
             }
             catch (Exception e)
             {
@@ -67,16 +65,16 @@ namespace ITWorkstationsInc.View
             }
             if (NamesList != null)
             {
-                comboBoxAddPCCase.DataSource = NamesList;
+                comboBoxAddCPUV2.DataSource = NamesList;
             }
         }
 
-        private void buttonAddPCCaseData_Click(object sender, EventArgs e)
+        private void buttonAddCPUV2Data_Click(object sender, EventArgs e)
         {
-            CaseBox caseBox = new CaseBox();
-            caseBox.CaseName = comboBoxAddPCCase.Text;
-            caseBox.CasePrice = Convert.ToDouble(textBoxAddPCCasePrice.Text);
-            if (mPCCaseDAO.addData(caseBox))
+            CPUV2 cpuv2 = new CPUV2();
+            cpuv2.Cpuv2Name = comboBoxAddCPUV2.Text;
+            cpuv2.Cpuv2Price = Convert.ToDouble(textBoxAddCPUV2Price.Text);
+            if (mCPUV2DAO.addData(cpuv2))
             {
                 MessageBox.Show("Item Added");
             }
@@ -87,14 +85,14 @@ namespace ITWorkstationsInc.View
             initForm();
         }
 
-        private void buttonEditPCCaseData_Click(object sender, EventArgs e)
+        private void buttonEditCPUV2Data_Click(object sender, EventArgs e)
         {
             try
             {
-                CaseBox caseBox = new CaseBox();
-                caseBox.CaseId = mCaseBoxDictionary.GetValueOrDefault(comboBoxAddPCCase.GetItemText(comboBoxAddPCCase.SelectedItem)).CaseId;
-                caseBox.CasePrice = Convert.ToDouble(textBoxAddPCCasePrice.Text);
-                if (mPCCaseDAO.UpdateData(caseBox))
+                CPUV2 cpuv2 = new CPUV2();
+                cpuv2.Cpuv2Id = itemDictionary.GetValueOrDefault(comboBoxAddCPUV2.GetItemText(comboBoxAddCPUV2.SelectedItem)).Cpuv2Id;
+                cpuv2.Cpuv2Price = Convert.ToDouble(textBoxAddCPUV2Price.Text);
+                if (mCPUV2DAO.UpdateData(cpuv2))
                 {
                     MessageBox.Show("Item Updated");
                 }
@@ -110,12 +108,12 @@ namespace ITWorkstationsInc.View
             initForm();
         }
 
-        private void buttonDeletePCCaseData_Click(object sender, EventArgs e)
+        private void buttonDeleteCPUV2Data_Click(object sender, EventArgs e)
         {
             try
             {
-                CaseBox caseBox = mCaseBoxDictionary.GetValueOrDefault(comboBoxAddPCCase.GetItemText(comboBoxAddPCCase.SelectedItem));
-                if (mPCCaseDAO.DeleteData(caseBox))
+                CPUV2 cpuv2 = itemDictionary.GetValueOrDefault(comboBoxAddCPUV2.GetItemText(comboBoxAddCPUV2.SelectedItem));
+                if (mCPUV2DAO.DeleteData(cpuv2))
                 {
                     MessageBox.Show("Item Deleted");
                 }
@@ -131,31 +129,31 @@ namespace ITWorkstationsInc.View
             initForm();
         }
 
-        private void buttonPCCaseAddForm_Click(object sender, EventArgs e)
+        private void buttonCloseCPUV2AddForm_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void PCCaseForm_FormClosed(object sender, FormClosedEventArgs e)
+        private void CPUV2Form_FormClosed(object sender, FormClosedEventArgs e)
         {
             instance = null;
         }
 
-        private void comboBoxAddPCCase_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboBoxAddCPUV2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CaseBox caseBox = null;
+            CPUV2 cpuv2 = null;
             try
             {
-                caseBox = mCaseBoxDictionary.GetValueOrDefault(comboBoxAddPCCase.GetItemText(comboBoxAddPCCase.SelectedItem));
+                cpuv2 = itemDictionary.GetValueOrDefault(comboBoxAddCPUV2.GetItemText(comboBoxAddCPUV2.SelectedItem));
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
 
-            if (caseBox != null)
+            if (cpuv2 != null)
             {
-                textBoxAddPCCasePrice.Text = caseBox.CasePrice.ToString();
+                textBoxAddCPUV2Price.Text = cpuv2.Cpuv2Price.ToString();
             }
         }
     }
