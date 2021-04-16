@@ -141,7 +141,7 @@ namespace ITWorkstationsInc.View
             this.comboBoxAddRAMComponent.Name = "comboBoxAddRAMComponent";
             this.comboBoxAddRAMComponent.Size = new System.Drawing.Size(441, 23);
             this.comboBoxAddRAMComponent.TabIndex = 0;
-            this.comboBoxAddRAMComponent.SelectedIndexChanged += new System.EventHandler(this.comboBoxAddRAMRAMComponent_SelectedIndexChanged);
+            this.comboBoxAddRAMComponent.SelectedIndexChanged += new System.EventHandler(this.comboBoxAddRAMComponent_SelectedIndexChanged);
             // 
             // RAMComponentForm
             // 

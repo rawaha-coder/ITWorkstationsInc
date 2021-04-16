@@ -10,25 +10,24 @@ using ITWorkstationsInc.Model;
 
 namespace ITWorkstationsInc.View
 {
-    public partial class RAMComponentForm : Form
+    public partial class NVIDIAComponentForm : Form
     {
-
-        private static RAMComponentForm instance;
+        private static NVIDIAComponentForm instance;
         FormITWorkstation formITWorkstation;
-        RAMComponentDAO mRAMComponentDAO = RAMComponentDAO.getInstance();
-        Dictionary<string, RAMComponent> itemDictionary = new Dictionary<string, RAMComponent>();
+        NVIDIAComponentDAO mNVIDIAComponentDAO = NVIDIAComponentDAO.getInstance();
+        Dictionary<string, NVIDIAComponent> itemDictionary = new Dictionary<string, NVIDIAComponent>();
 
-        public RAMComponentForm(FormITWorkstation formITWorkstation)
+        public NVIDIAComponentForm(FormITWorkstation formITWorkstation)
         {
             this.formITWorkstation = formITWorkstation;
             InitializeComponent();
         }
 
-        public static RAMComponentForm getInstance(FormITWorkstation formITWorkstation)
+        public static NVIDIAComponentForm getInstance(FormITWorkstation formITWorkstation)
         {
             if (instance == null)
             {
-                instance = new RAMComponentForm(formITWorkstation);
+                instance = new NVIDIAComponentForm(formITWorkstation);
             }
             return instance;
         }
@@ -41,13 +40,13 @@ namespace ITWorkstationsInc.View
             }
             else
             {
-                instance = new RAMComponentForm(formITWorkstation);
+                instance = new NVIDIAComponentForm(formITWorkstation);
 
             }
             instance.Show();
         }
 
-        private void RAMComponentForm_Load(object sender, EventArgs e)
+        private void NVIDIAComponentForm_Load(object sender, EventArgs e)
         {
             initForm();
         }
@@ -58,7 +57,7 @@ namespace ITWorkstationsInc.View
             itemDictionary.Clear();
             try
             {
-                itemDictionary = mRAMComponentDAO.RAMComponentDictionary();
+                itemDictionary = mNVIDIAComponentDAO.NVIDIAComponentDictionary();
                 NamesList.AddRange(itemDictionary.Keys);
             }
             catch (Exception e)
@@ -67,16 +66,16 @@ namespace ITWorkstationsInc.View
             }
             if (NamesList != null)
             {
-                comboBoxAddRAMComponent.DataSource = NamesList;
+                comboBoxAddNVIDIAComponent.DataSource = NamesList;
             }
         }
 
-        private void buttonAddRAMComponentData_Click(object sender, EventArgs e)
+        private void buttonAddNVIDIAComponentData_Click(object sender, EventArgs e)
         {
-            RAMComponent item = new RAMComponent();
-            item.Name = comboBoxAddRAMComponent.Text;
-            item.Price = Convert.ToDouble(textBoxAddRAMComponentPrice.Text);
-            if (mRAMComponentDAO.addData(item))
+            NVIDIAComponent item = new NVIDIAComponent();
+            item.Name = comboBoxAddNVIDIAComponent.Text;
+            item.Price = Convert.ToDouble(textBoxAddNVIDIAComponentPrice.Text);
+            if (mNVIDIAComponentDAO.addData(item))
             {
                 MessageBox.Show("Item Added");
             }
@@ -87,14 +86,14 @@ namespace ITWorkstationsInc.View
             initForm();
         }
 
-        private void buttonEditRAMComponentData_Click(object sender, EventArgs e)
+        private void buttonEditNVIDIAComponentData_Click(object sender, EventArgs e)
         {
             try
             {
-                RAMComponent item = new RAMComponent();
-                item.Id = itemDictionary.GetValueOrDefault(comboBoxAddRAMComponent.GetItemText(comboBoxAddRAMComponent.SelectedItem)).Id;
-                item.Price = Convert.ToDouble(textBoxAddRAMComponentPrice.Text);
-                if (mRAMComponentDAO.UpdateData(item))
+                NVIDIAComponent item = new NVIDIAComponent();
+                item.Id = itemDictionary.GetValueOrDefault(comboBoxAddNVIDIAComponent.GetItemText(comboBoxAddNVIDIAComponent.SelectedItem)).Id;
+                item.Price = Convert.ToDouble(textBoxAddNVIDIAComponentPrice.Text);
+                if (mNVIDIAComponentDAO.UpdateData(item))
                 {
                     MessageBox.Show("Item Updated");
                 }
@@ -110,12 +109,12 @@ namespace ITWorkstationsInc.View
             initForm();
         }
 
-        private void buttonDeleteRAMComponentData_Click(object sender, EventArgs e)
+        private void buttonDeleteNVIDIAComponentData_Click(object sender, EventArgs e)
         {
             try
             {
-                RAMComponent item = itemDictionary.GetValueOrDefault(comboBoxAddRAMComponent.GetItemText(comboBoxAddRAMComponent.SelectedItem));
-                if (mRAMComponentDAO.DeleteData(item))
+                NVIDIAComponent item = itemDictionary.GetValueOrDefault(comboBoxAddNVIDIAComponent.GetItemText(comboBoxAddNVIDIAComponent.SelectedItem));
+                if (mNVIDIAComponentDAO.DeleteData(item))
                 {
                     MessageBox.Show("Item Deleted");
                 }
@@ -131,25 +130,25 @@ namespace ITWorkstationsInc.View
             initForm();
         }
 
-        private void buttonCloseRAMComponentAddForm_Click(object sender, EventArgs e)
+        private void buttonCloseNVIDIAComponentAddForm_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void RAMComponentForm_FormClosed(object sender, FormClosedEventArgs e)
+        private void NVIDIAComponentForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             instance = null;
         }
 
-        private void comboBoxAddRAMComponent_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboBoxAddNVIDIAComponent_SelectedIndexChanged(object sender, EventArgs e)
         {
-            RAMComponent item = null;
+            NVIDIAComponent item = null;
             try
             {
-                item = itemDictionary.GetValueOrDefault(comboBoxAddRAMComponent.GetItemText(comboBoxAddRAMComponent.SelectedItem));
+                item = itemDictionary.GetValueOrDefault(comboBoxAddNVIDIAComponent.GetItemText(comboBoxAddNVIDIAComponent.SelectedItem));
                 if (item != null)
                 {
-                    textBoxAddRAMComponentPrice.Text = item.Price.ToString();
+                    textBoxAddNVIDIAComponentPrice.Text = item.Price.ToString();
                 }
             }
             catch (Exception ex)
