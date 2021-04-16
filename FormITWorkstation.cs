@@ -20,12 +20,15 @@ namespace ITWorkstationsInc
         CpuV3DAO mCPUV3DAO = CpuV3DAO.getInstance();
         SDDStorageDAO mSDDStorageDAO = SDDStorageDAO.getInstance();
         HDDStorageDAO mHDDStorageDAO = HDDStorageDAO.getInstance();
+        RAMComponentDAO mRAMComponentDAO = RAMComponentDAO.getInstance();
+        
 
         Dictionary<string, CaseBox> mCaseBoxDictionary = new Dictionary<string, CaseBox>();
         Dictionary<string, CPUV2> mCPUV2Dictionary = new Dictionary<string, CPUV2>();
         Dictionary<string, CPUV3> mCPUV3Dictionary = new Dictionary<string, CPUV3>();
         Dictionary<string, SDDStorage> mSDDDictionary = new Dictionary<string, SDDStorage>();
         Dictionary<string, HDDStorage> mHDDDictionary = new Dictionary<string, HDDStorage>();
+        Dictionary<string, RAMComponent> mRAMComponentDictionary = new Dictionary<string, RAMComponent>();
 
         public FormITWorkstation()
         {
@@ -34,7 +37,7 @@ namespace ITWorkstationsInc
 
         private void ITWorkstation_Load(object sender, EventArgs e)
         {
-            //mHDDStorageDAO.CreateTable();
+            //mRAMComponentDAO.CreateTable();
             ReLoadLists();
         }
 
@@ -45,6 +48,7 @@ namespace ITWorkstationsInc
             initCPUV3List();
             initSDDList();
             initHDDList();
+            initRAMComponentList();
         }
 
         private void initPCCaseList()
@@ -130,7 +134,7 @@ namespace ITWorkstationsInc
             try
             {
                 mHDDDictionary = mHDDStorageDAO.HDDDictionary();
-                NamesList.AddRange(mSDDDictionary.Keys);
+                NamesList.AddRange(mHDDDictionary.Keys);
             }
             catch (Exception e)
             {
@@ -139,6 +143,26 @@ namespace ITWorkstationsInc
             if (NamesList != null)
             {
                 HDDListComboBox.DataSource = NamesList;
+            }
+        }
+
+
+        private void initRAMComponentList()
+        {
+            List<string> NamesList = new List<string>();
+            mRAMComponentDictionary.Clear();
+            try
+            {
+                mRAMComponentDictionary = mRAMComponentDAO.RAMComponentDictionary();
+                NamesList.AddRange(mRAMComponentDictionary.Keys);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            if (NamesList != null)
+            {
+                RAMListComboBox.DataSource = NamesList;
             }
         }
 
@@ -173,7 +197,8 @@ namespace ITWorkstationsInc
             }
             else if (e.ClickedItem.Name == RAMStripMenuItem.Name)
             {
-                MessageBox.Show(e.ClickedItem.Name);
+                RAMComponentForm AddItemForm = new RAMComponentForm(this);
+                AddItemForm.ShowAddForm();
             }
             else if (e.ClickedItem.Name == NVIDIAStripMenuItem.Name)
             {
