@@ -18,9 +18,12 @@ namespace ITWorkstationsInc
         PCCaseDAO mPCCaseDAO = PCCaseDAO.getInstance();
         CpuV2DAO mCPUV2DAO = CpuV2DAO.getInstance();
         CpuV3DAO mCPUV3DAO = CpuV3DAO.getInstance();
+        SDDStorageDAO mSDDStorageDAO = SDDStorageDAO.getInstance();
+
         Dictionary<string, CaseBox> mCaseBoxDictionary = new Dictionary<string, CaseBox>();
         Dictionary<string, CPUV2> mCPUV2Dictionary = new Dictionary<string, CPUV2>();
         Dictionary<string, CPUV3> mCPUV3Dictionary = new Dictionary<string, CPUV3>();
+        Dictionary<string, SDDStorage> mSDDDictionary = new Dictionary<string, SDDStorage>();
 
         public FormITWorkstation()
         {
@@ -29,7 +32,7 @@ namespace ITWorkstationsInc
 
         private void ITWorkstation_Load(object sender, EventArgs e)
         {
-            //mCPUV3DAO.CreateTable();
+            //mSDDStorageDAO.CreateTable();
             ReLoadLists();
         }
 
@@ -38,6 +41,7 @@ namespace ITWorkstationsInc
             initPCCaseList();
             initCPUV2List();
             initCPUV3List();
+            initSDDList();
         }
 
         private void initPCCaseList()
@@ -97,6 +101,25 @@ namespace ITWorkstationsInc
             }
         }
 
+        private void initSDDList()
+        {
+            List<string> NamesList = new List<string>();
+            mSDDDictionary.Clear();
+            try
+            {
+                mSDDDictionary = mSDDStorageDAO.SDDDictionary();
+                NamesList.AddRange(mSDDDictionary.Keys);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            if (NamesList != null)
+            {
+                SDDListComboBox.DataSource = NamesList;
+            }
+        }
+
         private void UpdateItemContextMenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             if (e.ClickedItem.Name == PCCaseStripMenuItem.Name)
@@ -118,7 +141,8 @@ namespace ITWorkstationsInc
             }
             else if (e.ClickedItem.Name == SDDStripMenuItem.Name)
             {
-                MessageBox.Show(e.ClickedItem.Name);
+                SDDStorageForm AddItemForm = new SDDStorageForm(this);
+                AddItemForm.ShowAddForm();
             }
             else if (e.ClickedItem.Name == HDDStripMenuItem.Name)
             {
