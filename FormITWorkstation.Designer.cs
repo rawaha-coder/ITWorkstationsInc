@@ -77,6 +77,7 @@ namespace ITWorkstationsInc
             this.HDDStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RAMStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.NVIDIAStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ReloadButton = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -89,11 +90,13 @@ namespace ITWorkstationsInc
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UpdateButton)).BeginInit();
             this.UpdateItemContextMenuStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ReloadButton)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label12);
+            this.groupBox1.Controls.Add(this.ReloadButton);
             this.groupBox1.Controls.Add(this.pictureBox7);
             this.groupBox1.Controls.Add(this.NVIDIAListComboBox);
             this.groupBox1.Controls.Add(this.label13);
@@ -559,6 +562,17 @@ namespace ITWorkstationsInc
             this.NVIDIAStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.NVIDIAStripMenuItem.Text = "NVIDIA";
             // 
+            // ReloadButton
+            // 
+            this.ReloadButton.Image = global::ITWorkstationsInc.Properties.Resources.pngkey_com_update_png_845413;
+            this.ReloadButton.Location = new System.Drawing.Point(618, 431);
+            this.ReloadButton.Name = "ReloadButton";
+            this.ReloadButton.Size = new System.Drawing.Size(37, 37);
+            this.ReloadButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ReloadButton.TabIndex = 4;
+            this.ReloadButton.TabStop = false;
+            this.ReloadButton.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ReloadButton_MouseClick);
+            // 
             // FormITWorkstation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -587,6 +601,7 @@ namespace ITWorkstationsInc
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.UpdateButton)).EndInit();
             this.UpdateItemContextMenuStrip.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ReloadButton)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -640,6 +655,7 @@ namespace ITWorkstationsInc
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.ComboBox CPUV2ListComboBox;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.PictureBox ReloadButton;
     }
 }
 

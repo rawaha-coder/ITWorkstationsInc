@@ -103,6 +103,16 @@ namespace ITWorkstationsInc.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap pngkey_com_update_png_845413 {
+            get {
+                object obj = ResourceManager.GetObject("pngkey.com-update-png-845413", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap sdd {
             get {
                 object obj = ResourceManager.GetObject("sdd", resourceCulture);

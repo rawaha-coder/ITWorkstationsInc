@@ -21,7 +21,7 @@ namespace ITWorkstationsInc
         SDDStorageDAO mSDDStorageDAO = SDDStorageDAO.getInstance();
         HDDStorageDAO mHDDStorageDAO = HDDStorageDAO.getInstance();
         RAMComponentDAO mRAMComponentDAO = RAMComponentDAO.getInstance();
-        
+        NVIDIAComponentDAO mNVIDIAComponentDAO = NVIDIAComponentDAO.getInstance();
 
         Dictionary<string, CaseBox> mCaseBoxDictionary = new Dictionary<string, CaseBox>();
         Dictionary<string, CPUV2> mCPUV2Dictionary = new Dictionary<string, CPUV2>();
@@ -29,6 +29,7 @@ namespace ITWorkstationsInc
         Dictionary<string, SDDStorage> mSDDDictionary = new Dictionary<string, SDDStorage>();
         Dictionary<string, HDDStorage> mHDDDictionary = new Dictionary<string, HDDStorage>();
         Dictionary<string, RAMComponent> mRAMComponentDictionary = new Dictionary<string, RAMComponent>();
+        Dictionary<string, NVIDIAComponent> mNVIDIAComponentDictionary = new Dictionary<string, NVIDIAComponent>();
 
         public FormITWorkstation()
         {
@@ -37,7 +38,7 @@ namespace ITWorkstationsInc
 
         private void ITWorkstation_Load(object sender, EventArgs e)
         {
-            //mRAMComponentDAO.CreateTable();
+            //mNVIDIAComponentDAO.CreateTable();
             ReLoadLists();
         }
 
@@ -49,6 +50,7 @@ namespace ITWorkstationsInc
             initSDDList();
             initHDDList();
             initRAMComponentList();
+            initNVIDIAComponentList();
         }
 
         private void initPCCaseList()
@@ -166,6 +168,25 @@ namespace ITWorkstationsInc
             }
         }
 
+        private void initNVIDIAComponentList()
+        {
+            List<string> NamesList = new List<string>();
+            mRAMComponentDictionary.Clear();
+            try
+            {
+                mNVIDIAComponentDictionary = mNVIDIAComponentDAO.NVIDIAComponentDictionary();
+                NamesList.AddRange(mNVIDIAComponentDictionary.Keys);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            if (NamesList != null)
+            {
+                NVIDIAListComboBox.DataSource = NamesList;
+            }
+        }
+
         private void UpdateItemContextMenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             if (e.ClickedItem.Name == PCCaseStripMenuItem.Name)
@@ -202,7 +223,8 @@ namespace ITWorkstationsInc
             }
             else if (e.ClickedItem.Name == NVIDIAStripMenuItem.Name)
             {
-                MessageBox.Show(e.ClickedItem.Name);
+                NVIDIAComponentForm AddItemForm = new NVIDIAComponentForm(this);
+                AddItemForm.ShowAddForm();
             }
         }
 
@@ -212,6 +234,11 @@ namespace ITWorkstationsInc
             Point ptLowerLeft = new Point(0, btnSender.Height);
             ptLowerLeft = btnSender.PointToScreen(ptLowerLeft);
             UpdateItemContextMenuStrip.Show(ptLowerLeft);
+        }
+
+        private void ReloadButton_MouseClick(object sender, MouseEventArgs e)
+        {
+            ReLoadLists();
         }
     }
 }
