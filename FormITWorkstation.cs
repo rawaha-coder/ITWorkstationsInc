@@ -19,11 +19,13 @@ namespace ITWorkstationsInc
         CpuV2DAO mCPUV2DAO = CpuV2DAO.getInstance();
         CpuV3DAO mCPUV3DAO = CpuV3DAO.getInstance();
         SDDStorageDAO mSDDStorageDAO = SDDStorageDAO.getInstance();
+        HDDStorageDAO mHDDStorageDAO = HDDStorageDAO.getInstance();
 
         Dictionary<string, CaseBox> mCaseBoxDictionary = new Dictionary<string, CaseBox>();
         Dictionary<string, CPUV2> mCPUV2Dictionary = new Dictionary<string, CPUV2>();
         Dictionary<string, CPUV3> mCPUV3Dictionary = new Dictionary<string, CPUV3>();
         Dictionary<string, SDDStorage> mSDDDictionary = new Dictionary<string, SDDStorage>();
+        Dictionary<string, HDDStorage> mHDDDictionary = new Dictionary<string, HDDStorage>();
 
         public FormITWorkstation()
         {
@@ -32,7 +34,7 @@ namespace ITWorkstationsInc
 
         private void ITWorkstation_Load(object sender, EventArgs e)
         {
-            //mSDDStorageDAO.CreateTable();
+            //mHDDStorageDAO.CreateTable();
             ReLoadLists();
         }
 
@@ -42,6 +44,7 @@ namespace ITWorkstationsInc
             initCPUV2List();
             initCPUV3List();
             initSDDList();
+            initHDDList();
         }
 
         private void initPCCaseList()
@@ -120,6 +123,25 @@ namespace ITWorkstationsInc
             }
         }
 
+        private void initHDDList()
+        {
+            List<string> NamesList = new List<string>();
+            mHDDDictionary.Clear();
+            try
+            {
+                mHDDDictionary = mHDDStorageDAO.HDDDictionary();
+                NamesList.AddRange(mSDDDictionary.Keys);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            if (NamesList != null)
+            {
+                HDDListComboBox.DataSource = NamesList;
+            }
+        }
+
         private void UpdateItemContextMenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             if (e.ClickedItem.Name == PCCaseStripMenuItem.Name)
@@ -146,7 +168,8 @@ namespace ITWorkstationsInc
             }
             else if (e.ClickedItem.Name == HDDStripMenuItem.Name)
             {
-                MessageBox.Show(e.ClickedItem.Name);
+                HDDStorageForm AddItemForm = new HDDStorageForm(this);
+                AddItemForm.ShowAddForm();
             }
             else if (e.ClickedItem.Name == RAMStripMenuItem.Name)
             {
