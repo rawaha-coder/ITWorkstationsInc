@@ -62,11 +62,11 @@ namespace ITWorkstationsInc
             this.label1 = new System.Windows.Forms.Label();
             this.MainCalculButton = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.FeeTextBox = new System.Windows.Forms.TextBox();
+            this.ProfitTextBox = new System.Windows.Forms.TextBox();
             this.ProfitLabel = new System.Windows.Forms.Label();
-            this.ProfitComboBox = new System.Windows.Forms.ComboBox();
             this.FeeLabel = new System.Windows.Forms.Label();
             this.txtMainResultCalcul = new System.Windows.Forms.Label();
-            this.FeeComboBox = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.MainRichTextBox = new System.Windows.Forms.RichTextBox();
             this.UpdateButton = new System.Windows.Forms.PictureBox();
@@ -78,6 +78,7 @@ namespace ITWorkstationsInc
             this.HDDStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RAMStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.NVIDIAStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CopyButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ReloadButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
@@ -431,11 +432,11 @@ namespace ITWorkstationsInc
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.FeeTextBox);
+            this.groupBox2.Controls.Add(this.ProfitTextBox);
             this.groupBox2.Controls.Add(this.ProfitLabel);
-            this.groupBox2.Controls.Add(this.ProfitComboBox);
             this.groupBox2.Controls.Add(this.FeeLabel);
             this.groupBox2.Controls.Add(this.txtMainResultCalcul);
-            this.groupBox2.Controls.Add(this.FeeComboBox);
             this.groupBox2.Controls.Add(this.MainCalculButton);
             this.groupBox2.Location = new System.Drawing.Point(13, 538);
             this.groupBox2.Name = "groupBox2";
@@ -443,6 +444,24 @@ namespace ITWorkstationsInc
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Calcul";
+            // 
+            // FeeTextBox
+            // 
+            this.FeeTextBox.Location = new System.Drawing.Point(86, 49);
+            this.FeeTextBox.Name = "FeeTextBox";
+            this.FeeTextBox.Size = new System.Drawing.Size(100, 23);
+            this.FeeTextBox.TabIndex = 11;
+            this.FeeTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FeeTextBox_KeyDown);
+            this.FeeTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FeeTextBox_KeyPress);
+            // 
+            // ProfitTextBox
+            // 
+            this.ProfitTextBox.Location = new System.Drawing.Point(288, 50);
+            this.ProfitTextBox.Name = "ProfitTextBox";
+            this.ProfitTextBox.Size = new System.Drawing.Size(100, 23);
+            this.ProfitTextBox.TabIndex = 10;
+            this.ProfitTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ProfitTextBox_KeyDown);
+            this.ProfitTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ProfitTextBox_KeyPress);
             // 
             // ProfitLabel
             // 
@@ -453,14 +472,6 @@ namespace ITWorkstationsInc
             this.ProfitLabel.Size = new System.Drawing.Size(65, 23);
             this.ProfitLabel.TabIndex = 8;
             this.ProfitLabel.Text = "Profit:";
-            // 
-            // ProfitComboBox
-            // 
-            this.ProfitComboBox.FormattingEnabled = true;
-            this.ProfitComboBox.Location = new System.Drawing.Point(288, 50);
-            this.ProfitComboBox.Name = "ProfitComboBox";
-            this.ProfitComboBox.Size = new System.Drawing.Size(111, 23);
-            this.ProfitComboBox.TabIndex = 9;
             // 
             // FeeLabel
             // 
@@ -482,28 +493,24 @@ namespace ITWorkstationsInc
             this.txtMainResultCalcul.TabIndex = 7;
             this.txtMainResultCalcul.Text = "0.0";
             // 
-            // FeeComboBox
-            // 
-            this.FeeComboBox.FormattingEnabled = true;
-            this.FeeComboBox.Location = new System.Drawing.Point(85, 50);
-            this.FeeComboBox.Name = "FeeComboBox";
-            this.FeeComboBox.Size = new System.Drawing.Size(85, 23);
-            this.FeeComboBox.TabIndex = 7;
-            // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.MainRichTextBox);
             this.panel1.Location = new System.Drawing.Point(681, 47);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(491, 591);
+            this.panel1.Size = new System.Drawing.Size(491, 474);
             this.panel1.TabIndex = 2;
             // 
             // MainRichTextBox
             // 
-            this.MainRichTextBox.Location = new System.Drawing.Point(-2, -2);
+            this.MainRichTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.MainRichTextBox.Font = new System.Drawing.Font("Georgia", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.MainRichTextBox.Location = new System.Drawing.Point(14, 14);
+            this.MainRichTextBox.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
             this.MainRichTextBox.Name = "MainRichTextBox";
-            this.MainRichTextBox.Size = new System.Drawing.Size(491, 591);
+            this.MainRichTextBox.Size = new System.Drawing.Size(459, 443);
             this.MainRichTextBox.TabIndex = 0;
             this.MainRichTextBox.Text = "";
             // 
@@ -581,12 +588,29 @@ namespace ITWorkstationsInc
             this.NVIDIAStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.NVIDIAStripMenuItem.Text = "NVIDIA";
             // 
+            // CopyButton
+            // 
+            this.CopyButton.BackColor = System.Drawing.Color.Black;
+            this.CopyButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.CopyButton.FlatAppearance.BorderSize = 2;
+            this.CopyButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CopyButton.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.CopyButton.ForeColor = System.Drawing.Color.White;
+            this.CopyButton.Location = new System.Drawing.Point(1015, 575);
+            this.CopyButton.Name = "CopyButton";
+            this.CopyButton.Size = new System.Drawing.Size(112, 42);
+            this.CopyButton.TabIndex = 4;
+            this.CopyButton.Text = "Copy";
+            this.CopyButton.UseVisualStyleBackColor = false;
+            this.CopyButton.Click += new System.EventHandler(this.CopyButton_Click);
+            // 
             // FormITWorkstation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(205)))), ((int)(((byte)(112)))));
             this.ClientSize = new System.Drawing.Size(1184, 661);
+            this.Controls.Add(this.CopyButton);
             this.Controls.Add(this.UpdateButton);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox2);
@@ -624,10 +648,8 @@ namespace ITWorkstationsInc
         private System.Windows.Forms.Button MainCalculButton;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label ProfitLabel;
-        private System.Windows.Forms.ComboBox ProfitComboBox;
         private System.Windows.Forms.Label FeeLabel;
         private System.Windows.Forms.Label txtMainResultCalcul;
-        private System.Windows.Forms.ComboBox FeeComboBox;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.RichTextBox MainRichTextBox;
         private System.Windows.Forms.PictureBox UpdateButton;
@@ -664,6 +686,9 @@ namespace ITWorkstationsInc
         private System.Windows.Forms.ComboBox CPUV2ListComboBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox ReloadButton;
+        private System.Windows.Forms.TextBox ProfitTextBox;
+        private System.Windows.Forms.TextBox FeeTextBox;
+        private System.Windows.Forms.Button CopyButton;
     }
 }
 

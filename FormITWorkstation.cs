@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using ITWorkstationsInc.View;
 using ITWorkstationsInc.Database;
 using ITWorkstationsInc.Model;
+using ITWorkstationsInc.Utility;
 
 namespace ITWorkstationsInc
 {
@@ -38,6 +39,15 @@ namespace ITWorkstationsInc
         double mHDDDPrice = 0.0;
         double mRAMPrice = 0.0;
         double mNVIDIAPrice = 0.0;
+
+        string mCaseBoxName = "";
+        string mCPUV2Name = "";
+        string mCPUV3DName = "";
+        string mSDDName = "";
+        string mHDDDName = "";
+        string mRAMName = "";
+        string mNVIDIAName = "";
+
 
         public FormITWorkstation()
         {
@@ -73,6 +83,18 @@ namespace ITWorkstationsInc
             txtRAMPrice.Text = "0.0";
             txtNVIDIAPrice.Text = "0.0";
             txtMainResultCalcul.Text = "0.0";
+            FeeTextBox.Text = "";
+            ProfitTextBox.Text = "";
+
+            mCaseBoxName = "";
+            mCPUV2Name = "";
+            mCPUV3DName = "";
+            mSDDName = "";
+            mHDDDName = "";
+            mRAMName = "";
+            mNVIDIAName = "";
+
+            MainRichTextBox.Text = "";
         }
 
         public void ReLoadLists()
@@ -212,7 +234,7 @@ namespace ITWorkstationsInc
         private void initNVIDIAComponentList()
         {
             List<string> NamesList = new List<string>();
-            mRAMComponentDictionary.Clear();
+            mNVIDIAComponentDictionary.Clear();
             try
             {
                 mNVIDIAComponentDictionary = mNVIDIAComponentDAO.NVIDIAComponentDictionary();
@@ -298,6 +320,8 @@ namespace ITWorkstationsInc
             {
                 mCaseBoxPrice = caseBox.CasePrice;
                 txtPCCasePrice.Text = mCaseBoxPrice.ToString();
+                mCaseBoxName = caseBox.CaseName;
+
             }
         }
 
@@ -317,6 +341,8 @@ namespace ITWorkstationsInc
             {
                 mCPUV2Price = cpuv2.Cpuv2Price;
                 txtCPUV2Price.Text = mCPUV2Price.ToString();
+                mCPUV2Name = cpuv2.Cpuv2Name;
+
             }
         }
 
@@ -335,6 +361,8 @@ namespace ITWorkstationsInc
             {
                 mCPUV3DPrice = cpuv3.Cpuv3Price;
                 txtCPUV3Price.Text = mCPUV3DPrice.ToString();
+                mCPUV3DName = cpuv3.Cpuv3Name;
+
             }
         }
 
@@ -353,6 +381,8 @@ namespace ITWorkstationsInc
             {
                 mSDDPrice = sDDStorage.Price;
                 txtSDDPrice.Text = mSDDPrice.ToString();
+                mSDDName = sDDStorage.Name;
+
             }
         }
 
@@ -371,6 +401,8 @@ namespace ITWorkstationsInc
             {
                 mHDDDPrice = hDDStorage.Price;
                 txtHDDPrice.Text = mHDDDPrice.ToString();
+                mHDDDName = hDDStorage.Name;
+
             }
         }
 
@@ -389,6 +421,7 @@ namespace ITWorkstationsInc
             {
                 mRAMPrice = ram.Price;
                 txtRAMPrice.Text = mRAMPrice.ToString();
+                mRAMName = ram.Name;
             }
         }
 
@@ -407,6 +440,7 @@ namespace ITWorkstationsInc
             {
                 mNVIDIAPrice = nVIDIA.Price;
                 txtNVIDIAPrice.Text = mNVIDIAPrice.ToString();
+                 mNVIDIAName = nVIDIA.Name;
             }
         }
 
@@ -414,6 +448,27 @@ namespace ITWorkstationsInc
         {
             var price = CalculTotalPay();
             txtMainResultCalcul.Text = price.ToString();
+
+            GetArticle();
+
+        }
+
+        private void GetArticle()
+        {
+            MainRichTextBox.Clear();
+            MainRichTextBox.Text += "PC: " + mCaseBoxName + ".\n";
+            MainRichTextBox.Text += "CPU V2: " + mCPUV2Name + ".\n";
+            MainRichTextBox.Text += "CPU V3: " + mCPUV3DName + ".\n";
+            MainRichTextBox.Text += "SDD: " + mSDDName + ".\n";
+            MainRichTextBox.Text += "HDD: " + mHDDDName + ".\n";
+            MainRichTextBox.Text += "RAM: " + mRAMName + ".\n";
+            MainRichTextBox.Text += "Nvidia: " + mNVIDIAName + ".";
+        }
+
+        private void CopyButton_Click(object sender, EventArgs e)
+        {
+            MainRichTextBox.SelectAll();
+            MainRichTextBox.Copy();
         }
 
         private double CalculTotalPay()
@@ -432,18 +487,61 @@ namespace ITWorkstationsInc
 
         private double FeePercentage()
         {
-            var sFee = FeeComboBox.Text;
-            double dFee = Convert.ToDouble(sFee);
+            double dFee = 0;
+            try
+            {
+                dFee = Convert.ToDouble(FeeTextBox.Text);
+            }
+            catch
+            {
+
+            }
             double feePercenage = dFee / 100;
             return feePercenage;
         }
 
         private double ProfitPercentage()
         {
-            var sProfit = ProfitComboBox.Text;
-            double dProfit = Convert.ToDouble(sProfit);
+            double dProfit = 0;
+            try
+            {
+                dProfit = Convert.ToDouble(ProfitTextBox.Text);
+            }
+            catch{}
             double feePercenage = dProfit / 100;
             return feePercenage;
+        }
+
+        private bool ProfitNonNumberEntered = false;
+
+        private void ProfitTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            ProfitNonNumberEntered = ValidateInput.NonNumberEntered(e);
+        }
+
+        private void ProfitTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (ProfitNonNumberEntered)
+            {
+                MessageBox.Show("Only numeric value accepted");
+                e.Handled = true;
+            }
+        }
+
+        private bool FeeNonNumberEntered = false;
+
+        private void FeeTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            FeeNonNumberEntered = ValidateInput.NonNumberEntered(e);
+        }
+
+        private void FeeTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (FeeNonNumberEntered)
+            {
+                MessageBox.Show("Only numeric value accepted");
+                e.Handled = true;
+            }
         }
 
 
