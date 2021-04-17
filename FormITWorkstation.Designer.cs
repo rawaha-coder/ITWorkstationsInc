@@ -32,7 +32,6 @@ namespace ITWorkstationsInc
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtNVIDIAPrice = new System.Windows.Forms.Label();
-            this.ReloadButton = new System.Windows.Forms.PictureBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.NVIDIAListComboBox = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -60,6 +59,7 @@ namespace ITWorkstationsInc
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.PCCaseListComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.ReloadButton = new System.Windows.Forms.PictureBox();
             this.MainCalculButton = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.FeeTextBox = new System.Windows.Forms.TextBox();
@@ -80,7 +80,6 @@ namespace ITWorkstationsInc
             this.NVIDIAStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CopyButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ReloadButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
@@ -88,6 +87,7 @@ namespace ITWorkstationsInc
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ReloadButton)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UpdateButton)).BeginInit();
@@ -97,7 +97,6 @@ namespace ITWorkstationsInc
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.txtNVIDIAPrice);
-            this.groupBox1.Controls.Add(this.ReloadButton);
             this.groupBox1.Controls.Add(this.pictureBox7);
             this.groupBox1.Controls.Add(this.NVIDIAListComboBox);
             this.groupBox1.Controls.Add(this.label13);
@@ -141,17 +140,6 @@ namespace ITWorkstationsInc
             this.txtNVIDIAPrice.Size = new System.Drawing.Size(37, 23);
             this.txtNVIDIAPrice.TabIndex = 30;
             this.txtNVIDIAPrice.Text = "0.0";
-            // 
-            // ReloadButton
-            // 
-            this.ReloadButton.Image = global::ITWorkstationsInc.Properties.Resources.pngkey_com_update_png_845413;
-            this.ReloadButton.Location = new System.Drawing.Point(618, 431);
-            this.ReloadButton.Name = "ReloadButton";
-            this.ReloadButton.Size = new System.Drawing.Size(37, 37);
-            this.ReloadButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ReloadButton.TabIndex = 4;
-            this.ReloadButton.TabStop = false;
-            this.ReloadButton.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ReloadButton_MouseClick);
             // 
             // pictureBox7
             // 
@@ -416,6 +404,17 @@ namespace ITWorkstationsInc
             this.label1.TabIndex = 3;
             this.label1.Text = "PC:";
             // 
+            // ReloadButton
+            // 
+            this.ReloadButton.Image = global::ITWorkstationsInc.Properties.Resources.pngkey_com_update_png_845413;
+            this.ReloadButton.Location = new System.Drawing.Point(631, 12);
+            this.ReloadButton.Name = "ReloadButton";
+            this.ReloadButton.Size = new System.Drawing.Size(37, 37);
+            this.ReloadButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ReloadButton.TabIndex = 4;
+            this.ReloadButton.TabStop = false;
+            this.ReloadButton.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ReloadButton_MouseClick);
+            // 
             // MainCalculButton
             // 
             this.MainCalculButton.BackColor = System.Drawing.Color.Black;
@@ -506,7 +505,7 @@ namespace ITWorkstationsInc
             // MainRichTextBox
             // 
             this.MainRichTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.MainRichTextBox.Font = new System.Drawing.Font("Georgia", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.MainRichTextBox.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.MainRichTextBox.Location = new System.Drawing.Point(14, 14);
             this.MainRichTextBox.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
             this.MainRichTextBox.Name = "MainRichTextBox";
@@ -610,6 +609,7 @@ namespace ITWorkstationsInc
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(205)))), ((int)(((byte)(112)))));
             this.ClientSize = new System.Drawing.Size(1184, 661);
+            this.Controls.Add(this.ReloadButton);
             this.Controls.Add(this.CopyButton);
             this.Controls.Add(this.UpdateButton);
             this.Controls.Add(this.panel1);
@@ -621,7 +621,6 @@ namespace ITWorkstationsInc
             this.Load += new System.EventHandler(this.ITWorkstation_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ReloadButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
@@ -629,6 +628,7 @@ namespace ITWorkstationsInc
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ReloadButton)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.panel1.ResumeLayout(false);

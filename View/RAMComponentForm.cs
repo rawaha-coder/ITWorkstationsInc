@@ -68,6 +68,8 @@ namespace ITWorkstationsInc.View
             if (NamesList != null)
             {
                 comboBoxAddRAMComponent.DataSource = NamesList;
+                comboBoxAddRAMComponent.SelectedIndex = -1;
+                textBoxAddRAMComponentPrice.Text = "";
             }
         }
 
@@ -129,6 +131,10 @@ namespace ITWorkstationsInc.View
                 Console.WriteLine(ex.Message);
             }
             initForm();
+            if (itemDictionary.Count == 0)
+            {
+                comboBoxAddRAMComponent.Text = "";
+            }
         }
 
         private void buttonCloseRAMComponentAddForm_Click(object sender, EventArgs e)
