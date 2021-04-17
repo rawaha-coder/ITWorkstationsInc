@@ -4,6 +4,8 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
+    <StartupObject>ITWorkstationsInc.Program</StartupObject>
+    <ApplicationIcon>WorkStation_icon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>

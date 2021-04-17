@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using ITWorkstationsInc.Database;
 using ITWorkstationsInc.Model;
+using ITWorkstationsInc.Utility;
 
 namespace ITWorkstationsInc.View
 {
@@ -74,17 +75,30 @@ namespace ITWorkstationsInc.View
 
         private void buttonAddCPUV3Data_Click(object sender, EventArgs e)
         {
-            CPUV3 cpuv3 = new CPUV3();
-            cpuv3.Cpuv3Name = comboBoxAddCPUV3.Text;
-            cpuv3.Cpuv3Price = Convert.ToDouble(textBoxAddCPUV3Price.Text);
-            if (mCPUV3DAO.addData(cpuv3))
+            if (comboBoxAddCPUV3.Text == "" || !Utility.ValidateInput.validateNumber(textBoxAddCPUV3Price.Text))
             {
-                MessageBox.Show("Item Added");
+                MessageBox.Show("Item Not Added, check the values");
+                return;
             }
-            else
+            try
+            {
+                CPUV3 cpuv3 = new CPUV3();
+                cpuv3.Cpuv3Name = comboBoxAddCPUV3.Text;
+                cpuv3.Cpuv3Price = Convert.ToDouble(textBoxAddCPUV3Price.Text);
+                if (mCPUV3DAO.addData(cpuv3))
+                {
+                    MessageBox.Show("Item Added");
+                }
+                else
+                {
+                    MessageBox.Show("Item Not Added, check the values");
+                }
+            }
+            catch(Exception ex)
             {
                 MessageBox.Show("Item Not Added, check the values");
             }
+
             initForm();
         }
 
@@ -106,7 +120,7 @@ namespace ITWorkstationsInc.View
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                MessageBox.Show("Item Not Updated");
             }
             initForm();
 
@@ -128,7 +142,7 @@ namespace ITWorkstationsInc.View
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                MessageBox.Show("Item Not Deleted");
             }
             initForm();
             if (itemDictionary.Count == 0)
@@ -164,5 +178,6 @@ namespace ITWorkstationsInc.View
             }
 
         }
+
     }
 }

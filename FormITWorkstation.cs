@@ -544,6 +544,9 @@ namespace ITWorkstationsInc
             }
         }
 
+        private void FeeTextBox_TextChanged(object sender, EventArgs e)
+        {
 
+        }
     }
 }

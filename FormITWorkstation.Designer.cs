@@ -283,9 +283,9 @@ namespace ITWorkstationsInc
             this.label5.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label5.Location = new System.Drawing.Point(71, 198);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(57, 23);
+            this.label5.Size = new System.Drawing.Size(53, 23);
             this.label5.TabIndex = 15;
-            this.label5.Text = "SDD:";
+            this.label5.Text = "SSD:";
             // 
             // txtCPUV3Price
             // 
@@ -322,9 +322,9 @@ namespace ITWorkstationsInc
             this.label7.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label7.Location = new System.Drawing.Point(71, 146);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(88, 23);
+            this.label7.Size = new System.Drawing.Size(73, 23);
             this.label7.TabIndex = 11;
-            this.label7.Text = "CPU V3:";
+            this.label7.Text = "CPU 2:";
             // 
             // txtCPUV2Price
             // 
@@ -361,9 +361,9 @@ namespace ITWorkstationsInc
             this.label3.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label3.Location = new System.Drawing.Point(71, 94);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(88, 23);
+            this.label3.Size = new System.Drawing.Size(73, 23);
             this.label3.TabIndex = 7;
-            this.label3.Text = "CPU V2:";
+            this.label3.Text = "CPU 1:";
             // 
             // txtPCCasePrice
             // 
@@ -450,6 +450,7 @@ namespace ITWorkstationsInc
             this.FeeTextBox.Name = "FeeTextBox";
             this.FeeTextBox.Size = new System.Drawing.Size(100, 23);
             this.FeeTextBox.TabIndex = 11;
+            this.FeeTextBox.TextChanged += new System.EventHandler(this.FeeTextBox_TextChanged);
             this.FeeTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FeeTextBox_KeyDown);
             this.FeeTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FeeTextBox_KeyPress);
             // 
@@ -535,56 +536,56 @@ namespace ITWorkstationsInc
             this.RAMStripMenuItem,
             this.NVIDIAStripMenuItem});
             this.UpdateItemContextMenuStrip.Name = "UpdateItemContextMenuStrip";
-            this.UpdateItemContextMenuStrip.Size = new System.Drawing.Size(114, 158);
+            this.UpdateItemContextMenuStrip.Size = new System.Drawing.Size(113, 158);
             this.UpdateItemContextMenuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.UpdateItemContextMenuStrip_ItemClicked);
             // 
             // PCCaseStripMenuItem
             // 
             this.PCCaseStripMenuItem.Image = global::ITWorkstationsInc.Properties.Resources.WorkStation_icon;
             this.PCCaseStripMenuItem.Name = "PCCaseStripMenuItem";
-            this.PCCaseStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.PCCaseStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.PCCaseStripMenuItem.Text = "PC";
             // 
             // CPUV2StripMenuItem
             // 
             this.CPUV2StripMenuItem.Image = global::ITWorkstationsInc.Properties.Resources.cpu;
             this.CPUV2StripMenuItem.Name = "CPUV2StripMenuItem";
-            this.CPUV2StripMenuItem.Size = new System.Drawing.Size(113, 22);
-            this.CPUV2StripMenuItem.Text = "CPU V2";
+            this.CPUV2StripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.CPUV2StripMenuItem.Text = "CPU 1";
             // 
             // CPUV3StripMenuItem
             // 
             this.CPUV3StripMenuItem.Image = global::ITWorkstationsInc.Properties.Resources.cpu;
             this.CPUV3StripMenuItem.Name = "CPUV3StripMenuItem";
-            this.CPUV3StripMenuItem.Size = new System.Drawing.Size(113, 22);
-            this.CPUV3StripMenuItem.Text = "CPU V3";
+            this.CPUV3StripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.CPUV3StripMenuItem.Text = "CPU 2";
             // 
             // SDDStripMenuItem
             // 
             this.SDDStripMenuItem.Image = global::ITWorkstationsInc.Properties.Resources.sdd;
             this.SDDStripMenuItem.Name = "SDDStripMenuItem";
-            this.SDDStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.SDDStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.SDDStripMenuItem.Text = "SDD";
             // 
             // HDDStripMenuItem
             // 
             this.HDDStripMenuItem.Image = global::ITWorkstationsInc.Properties.Resources.drive_hdd;
             this.HDDStripMenuItem.Name = "HDDStripMenuItem";
-            this.HDDStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.HDDStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.HDDStripMenuItem.Text = "HDD";
             // 
             // RAMStripMenuItem
             // 
             this.RAMStripMenuItem.Image = global::ITWorkstationsInc.Properties.Resources.computer_ram;
             this.RAMStripMenuItem.Name = "RAMStripMenuItem";
-            this.RAMStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.RAMStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.RAMStripMenuItem.Text = "RAM";
             // 
             // NVIDIAStripMenuItem
             // 
             this.NVIDIAStripMenuItem.Image = global::ITWorkstationsInc.Properties.Resources.video_card;
             this.NVIDIAStripMenuItem.Name = "NVIDIAStripMenuItem";
-            this.NVIDIAStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.NVIDIAStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.NVIDIAStripMenuItem.Text = "NVIDIA";
             // 
             // CopyButton

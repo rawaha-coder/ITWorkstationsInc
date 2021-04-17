@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace ITWorkstationsInc.Utility
 {
@@ -32,6 +33,18 @@ namespace ITWorkstationsInc.Utility
             }
 
             return nonNumberEntered;
+        }
+
+        public static bool CheckInput(String text1, String text2)
+        {
+            
+            return text1 == "" || !validateNumber(text2);
+        }
+
+        public static bool validateNumber(String Text)
+        {
+            Regex regex = new Regex(@"^[0-9]+\.?[0-9]*$");
+            return regex.Match(Text).Success;
         }
     }
 }
