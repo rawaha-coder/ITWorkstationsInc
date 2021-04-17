@@ -31,6 +31,14 @@ namespace ITWorkstationsInc
         Dictionary<string, RAMComponent> mRAMComponentDictionary = new Dictionary<string, RAMComponent>();
         Dictionary<string, NVIDIAComponent> mNVIDIAComponentDictionary = new Dictionary<string, NVIDIAComponent>();
 
+        double mCaseBoxPrice = 0.0;
+        double mCPUV2Price = 0.0;
+        double mCPUV3DPrice = 0.0;
+        double mSDDPrice = 0.0;
+        double mHDDDPrice = 0.0;
+        double mRAMPrice = 0.0;
+        double mNVIDIAPrice = 0.0;
+
         public FormITWorkstation()
         {
             InitializeComponent();
@@ -40,6 +48,31 @@ namespace ITWorkstationsInc
         {
             //mNVIDIAComponentDAO.CreateTable();
             ReLoadLists();
+            initToZeo();
+            initToZeroString();
+        }
+
+        private void initToZeo()
+        {
+            mCaseBoxPrice = 0.0;
+            mCPUV2Price = 0.0;
+            mCPUV3DPrice = 0.0;
+            mSDDPrice = 0.0;
+            mHDDDPrice = 0.0;
+            mRAMPrice = 0.0;
+            mNVIDIAPrice = 0.0;
+        }
+
+        private void initToZeroString()
+        {
+            txtPCCasePrice.Text = "0.0";
+            txtCPUV2Price.Text = "0.0";
+            txtCPUV3Price.Text = "0.0";
+            txtSDDPrice.Text = "0.0";
+            txtHDDPrice.Text = "0.0";
+            txtRAMPrice.Text = "0.0";
+            txtNVIDIAPrice.Text = "0.0";
+            txtMainResultCalcul.Text = "0.0";
         }
 
         public void ReLoadLists()
@@ -51,6 +84,8 @@ namespace ITWorkstationsInc
             initHDDList();
             initRAMComponentList();
             initNVIDIAComponentList();
+            initToZeo();
+            initToZeroString();
         }
 
         private void initPCCaseList()
@@ -69,6 +104,7 @@ namespace ITWorkstationsInc
             if (NamesList != null)
             {
                 PCCaseListComboBox.DataSource = NamesList;
+                PCCaseListComboBox.SelectedIndex = -1;
             }
         }
 
@@ -88,6 +124,7 @@ namespace ITWorkstationsInc
             if (NamesList != null)
             {
                 CPUV2ListComboBox.DataSource = NamesList;
+                CPUV2ListComboBox.SelectedIndex = -1;
             }
         }
 
@@ -107,6 +144,7 @@ namespace ITWorkstationsInc
             if (NamesList != null)
             {
                 CPUV3ListComboBox.DataSource = NamesList;
+                CPUV3ListComboBox.SelectedIndex = -1;
             }
         }
 
@@ -126,6 +164,7 @@ namespace ITWorkstationsInc
             if (NamesList != null)
             {
                 SDDListComboBox.DataSource = NamesList;
+                SDDListComboBox.SelectedIndex = -1;
             }
         }
 
@@ -145,6 +184,7 @@ namespace ITWorkstationsInc
             if (NamesList != null)
             {
                 HDDListComboBox.DataSource = NamesList;
+                HDDListComboBox.SelectedIndex = -1;
             }
         }
 
@@ -165,6 +205,7 @@ namespace ITWorkstationsInc
             if (NamesList != null)
             {
                 RAMListComboBox.DataSource = NamesList;
+                RAMListComboBox.SelectedIndex = -1;
             }
         }
 
@@ -184,6 +225,7 @@ namespace ITWorkstationsInc
             if (NamesList != null)
             {
                 NVIDIAListComboBox.DataSource = NamesList;
+                NVIDIAListComboBox.SelectedIndex = -1;
             }
         }
 
@@ -240,5 +282,170 @@ namespace ITWorkstationsInc
         {
             ReLoadLists();
         }
+
+        private void PCCaseListComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CaseBox caseBox = null;
+            try
+            {
+                caseBox = mCaseBoxDictionary.GetValueOrDefault(PCCaseListComboBox.GetItemText(PCCaseListComboBox.SelectedItem));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            if (caseBox != null)
+            {
+                mCaseBoxPrice = caseBox.CasePrice;
+                txtPCCasePrice.Text = mCaseBoxPrice.ToString();
+            }
+        }
+
+        private void CPUV2ListComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CPUV2 cpuv2 = null;
+            try
+            {
+                cpuv2 = mCPUV2Dictionary.GetValueOrDefault(CPUV2ListComboBox.GetItemText(CPUV2ListComboBox.SelectedItem));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            if (cpuv2 != null)
+            {
+                mCPUV2Price = cpuv2.Cpuv2Price;
+                txtCPUV2Price.Text = mCPUV2Price.ToString();
+            }
+        }
+
+        private void CPUV3ListComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CPUV3 cpuv3 = null;
+            try
+            {
+                cpuv3 = mCPUV3Dictionary.GetValueOrDefault(CPUV3ListComboBox.GetItemText(CPUV3ListComboBox.SelectedItem));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            if (cpuv3 != null)
+            {
+                mCPUV3DPrice = cpuv3.Cpuv3Price;
+                txtCPUV3Price.Text = mCPUV3DPrice.ToString();
+            }
+        }
+
+        private void SDDListComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SDDStorage sDDStorage = null;
+            try
+            {
+                sDDStorage = mSDDDictionary.GetValueOrDefault(SDDListComboBox.GetItemText(SDDListComboBox.SelectedItem));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            if (sDDStorage != null)
+            {
+                mSDDPrice = sDDStorage.Price;
+                txtSDDPrice.Text = mSDDPrice.ToString();
+            }
+        }
+
+        private void HDDListComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            HDDStorage hDDStorage = null;
+            try
+            {
+                hDDStorage = mHDDDictionary.GetValueOrDefault(HDDListComboBox.GetItemText(HDDListComboBox.SelectedItem));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            if (hDDStorage != null)
+            {
+                mHDDDPrice = hDDStorage.Price;
+                txtHDDPrice.Text = mHDDDPrice.ToString();
+            }
+        }
+
+        private void RAMListComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RAMComponent ram = null;
+            try
+            {
+                ram = mRAMComponentDictionary.GetValueOrDefault(RAMListComboBox.GetItemText(RAMListComboBox.SelectedItem));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            if (ram != null)
+            {
+                mRAMPrice = ram.Price;
+                txtRAMPrice.Text = mRAMPrice.ToString();
+            }
+        }
+
+        private void NVIDIAListComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            NVIDIAComponent nVIDIA = null;
+            try
+            {
+                nVIDIA = mNVIDIAComponentDictionary.GetValueOrDefault(NVIDIAListComboBox.GetItemText(NVIDIAListComboBox.SelectedItem));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            if (nVIDIA != null)
+            {
+                mNVIDIAPrice = nVIDIA.Price;
+                txtNVIDIAPrice.Text = mNVIDIAPrice.ToString();
+            }
+        }
+
+        private void MainCalculButton_Click(object sender, EventArgs e)
+        {
+            var price = CalculTotalPay();
+            txtMainResultCalcul.Text = price.ToString();
+        }
+
+        private double CalculTotalPay()
+        {
+            double total = 0.0;
+            total = CalculTotalPrice() + (CalculTotalPrice() * FeePercentage()) + (CalculTotalPrice() * ProfitPercentage());
+            return total;
+        }
+
+        private double CalculTotalPrice()
+        {
+            double CalculTotalPrice = mCaseBoxPrice + mCPUV2Price + mCPUV3DPrice + mSDDPrice + mHDDDPrice + mRAMPrice + mNVIDIAPrice;
+            return CalculTotalPrice;
+
+        }
+
+        private double FeePercentage()
+        {
+            var sFee = FeeComboBox.Text;
+            double dFee = Convert.ToDouble(sFee);
+            double feePercenage = dFee / 100;
+            return feePercenage;
+        }
+
+        private double ProfitPercentage()
+        {
+            var sProfit = ProfitComboBox.Text;
+            double dProfit = Convert.ToDouble(sProfit);
+            double feePercenage = dProfit / 100;
+            return feePercenage;
+        }
+
+
     }
 }
