@@ -31,27 +31,28 @@ namespace ITWorkstationsInc
         {
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label12 = new System.Windows.Forms.Label();
+            this.txtNVIDIAPrice = new System.Windows.Forms.Label();
+            this.ReloadButton = new System.Windows.Forms.PictureBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.NVIDIAListComboBox = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.txtRAMPrice = new System.Windows.Forms.Label();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.RAMListComboBox = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.txtHDDPrice = new System.Windows.Forms.Label();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.HDDListComboBox = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.txtSDDPrice = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.SDDListComboBox = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.txtCPUV3Price = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.CPUV3ListComboBox = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.txtCPUV2Price = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.CPUV2ListComboBox = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -77,8 +78,8 @@ namespace ITWorkstationsInc
             this.HDDStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RAMStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.NVIDIAStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ReloadButton = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ReloadButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
@@ -90,33 +91,32 @@ namespace ITWorkstationsInc
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UpdateButton)).BeginInit();
             this.UpdateItemContextMenuStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ReloadButton)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label12);
+            this.groupBox1.Controls.Add(this.txtNVIDIAPrice);
             this.groupBox1.Controls.Add(this.ReloadButton);
             this.groupBox1.Controls.Add(this.pictureBox7);
             this.groupBox1.Controls.Add(this.NVIDIAListComboBox);
             this.groupBox1.Controls.Add(this.label13);
-            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.txtRAMPrice);
             this.groupBox1.Controls.Add(this.pictureBox5);
             this.groupBox1.Controls.Add(this.RAMListComboBox);
             this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.txtHDDPrice);
             this.groupBox1.Controls.Add(this.pictureBox6);
             this.groupBox1.Controls.Add(this.HDDListComboBox);
             this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.txtSDDPrice);
             this.groupBox1.Controls.Add(this.pictureBox3);
             this.groupBox1.Controls.Add(this.SDDListComboBox);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.txtCPUV3Price);
             this.groupBox1.Controls.Add(this.pictureBox4);
             this.groupBox1.Controls.Add(this.CPUV3ListComboBox);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.txtCPUV2Price);
             this.groupBox1.Controls.Add(this.pictureBox2);
             this.groupBox1.Controls.Add(this.CPUV2ListComboBox);
             this.groupBox1.Controls.Add(this.label3);
@@ -131,15 +131,26 @@ namespace ITWorkstationsInc
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Workstation Component";
             // 
-            // label12
+            // txtNVIDIAPrice
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label12.Location = new System.Drawing.Point(573, 343);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(37, 23);
-            this.label12.TabIndex = 30;
-            this.label12.Text = "0.0";
+            this.txtNVIDIAPrice.AutoSize = true;
+            this.txtNVIDIAPrice.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtNVIDIAPrice.Location = new System.Drawing.Point(573, 343);
+            this.txtNVIDIAPrice.Name = "txtNVIDIAPrice";
+            this.txtNVIDIAPrice.Size = new System.Drawing.Size(37, 23);
+            this.txtNVIDIAPrice.TabIndex = 30;
+            this.txtNVIDIAPrice.Text = "0.0";
+            // 
+            // ReloadButton
+            // 
+            this.ReloadButton.Image = global::ITWorkstationsInc.Properties.Resources.pngkey_com_update_png_845413;
+            this.ReloadButton.Location = new System.Drawing.Point(618, 431);
+            this.ReloadButton.Name = "ReloadButton";
+            this.ReloadButton.Size = new System.Drawing.Size(37, 37);
+            this.ReloadButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ReloadButton.TabIndex = 4;
+            this.ReloadButton.TabStop = false;
+            this.ReloadButton.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ReloadButton_MouseClick);
             // 
             // pictureBox7
             // 
@@ -158,6 +169,7 @@ namespace ITWorkstationsInc
             this.NVIDIAListComboBox.Name = "NVIDIAListComboBox";
             this.NVIDIAListComboBox.Size = new System.Drawing.Size(378, 23);
             this.NVIDIAListComboBox.TabIndex = 28;
+            this.NVIDIAListComboBox.SelectedIndexChanged += new System.EventHandler(this.NVIDIAListComboBox_SelectedIndexChanged);
             // 
             // label13
             // 
@@ -169,15 +181,15 @@ namespace ITWorkstationsInc
             this.label13.TabIndex = 27;
             this.label13.Text = "NVIDIA:";
             // 
-            // label8
+            // txtRAMPrice
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label8.Location = new System.Drawing.Point(573, 295);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(37, 23);
-            this.label8.TabIndex = 26;
-            this.label8.Text = "0.0";
+            this.txtRAMPrice.AutoSize = true;
+            this.txtRAMPrice.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtRAMPrice.Location = new System.Drawing.Point(573, 295);
+            this.txtRAMPrice.Name = "txtRAMPrice";
+            this.txtRAMPrice.Size = new System.Drawing.Size(37, 23);
+            this.txtRAMPrice.TabIndex = 26;
+            this.txtRAMPrice.Text = "0.0";
             // 
             // pictureBox5
             // 
@@ -196,6 +208,7 @@ namespace ITWorkstationsInc
             this.RAMListComboBox.Name = "RAMListComboBox";
             this.RAMListComboBox.Size = new System.Drawing.Size(378, 23);
             this.RAMListComboBox.TabIndex = 24;
+            this.RAMListComboBox.SelectedIndexChanged += new System.EventHandler(this.RAMListComboBox_SelectedIndexChanged);
             // 
             // label9
             // 
@@ -207,15 +220,15 @@ namespace ITWorkstationsInc
             this.label9.TabIndex = 23;
             this.label9.Text = "RAM:";
             // 
-            // label10
+            // txtHDDPrice
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label10.Location = new System.Drawing.Point(573, 248);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(37, 23);
-            this.label10.TabIndex = 22;
-            this.label10.Text = "0.0";
+            this.txtHDDPrice.AutoSize = true;
+            this.txtHDDPrice.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtHDDPrice.Location = new System.Drawing.Point(573, 248);
+            this.txtHDDPrice.Name = "txtHDDPrice";
+            this.txtHDDPrice.Size = new System.Drawing.Size(37, 23);
+            this.txtHDDPrice.TabIndex = 22;
+            this.txtHDDPrice.Text = "0.0";
             // 
             // pictureBox6
             // 
@@ -234,6 +247,7 @@ namespace ITWorkstationsInc
             this.HDDListComboBox.Name = "HDDListComboBox";
             this.HDDListComboBox.Size = new System.Drawing.Size(378, 23);
             this.HDDListComboBox.TabIndex = 20;
+            this.HDDListComboBox.SelectedIndexChanged += new System.EventHandler(this.HDDListComboBox_SelectedIndexChanged);
             // 
             // label11
             // 
@@ -245,15 +259,15 @@ namespace ITWorkstationsInc
             this.label11.TabIndex = 19;
             this.label11.Text = "HDD:";
             // 
-            // label4
+            // txtSDDPrice
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(573, 198);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(37, 23);
-            this.label4.TabIndex = 18;
-            this.label4.Text = "0.0";
+            this.txtSDDPrice.AutoSize = true;
+            this.txtSDDPrice.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtSDDPrice.Location = new System.Drawing.Point(573, 198);
+            this.txtSDDPrice.Name = "txtSDDPrice";
+            this.txtSDDPrice.Size = new System.Drawing.Size(37, 23);
+            this.txtSDDPrice.TabIndex = 18;
+            this.txtSDDPrice.Text = "0.0";
             // 
             // pictureBox3
             // 
@@ -272,6 +286,7 @@ namespace ITWorkstationsInc
             this.SDDListComboBox.Name = "SDDListComboBox";
             this.SDDListComboBox.Size = new System.Drawing.Size(378, 23);
             this.SDDListComboBox.TabIndex = 16;
+            this.SDDListComboBox.SelectedIndexChanged += new System.EventHandler(this.SDDListComboBox_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -283,15 +298,15 @@ namespace ITWorkstationsInc
             this.label5.TabIndex = 15;
             this.label5.Text = "SDD:";
             // 
-            // label6
+            // txtCPUV3Price
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(573, 146);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(37, 23);
-            this.label6.TabIndex = 14;
-            this.label6.Text = "0.0";
+            this.txtCPUV3Price.AutoSize = true;
+            this.txtCPUV3Price.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtCPUV3Price.Location = new System.Drawing.Point(573, 146);
+            this.txtCPUV3Price.Name = "txtCPUV3Price";
+            this.txtCPUV3Price.Size = new System.Drawing.Size(37, 23);
+            this.txtCPUV3Price.TabIndex = 14;
+            this.txtCPUV3Price.Text = "0.0";
             // 
             // pictureBox4
             // 
@@ -310,6 +325,7 @@ namespace ITWorkstationsInc
             this.CPUV3ListComboBox.Name = "CPUV3ListComboBox";
             this.CPUV3ListComboBox.Size = new System.Drawing.Size(378, 23);
             this.CPUV3ListComboBox.TabIndex = 12;
+            this.CPUV3ListComboBox.SelectedIndexChanged += new System.EventHandler(this.CPUV3ListComboBox_SelectedIndexChanged);
             // 
             // label7
             // 
@@ -321,15 +337,15 @@ namespace ITWorkstationsInc
             this.label7.TabIndex = 11;
             this.label7.Text = "CPU V3:";
             // 
-            // label2
+            // txtCPUV2Price
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(573, 94);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(37, 23);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "0.0";
+            this.txtCPUV2Price.AutoSize = true;
+            this.txtCPUV2Price.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtCPUV2Price.Location = new System.Drawing.Point(573, 94);
+            this.txtCPUV2Price.Name = "txtCPUV2Price";
+            this.txtCPUV2Price.Size = new System.Drawing.Size(37, 23);
+            this.txtCPUV2Price.TabIndex = 10;
+            this.txtCPUV2Price.Text = "0.0";
             // 
             // pictureBox2
             // 
@@ -348,6 +364,7 @@ namespace ITWorkstationsInc
             this.CPUV2ListComboBox.Name = "CPUV2ListComboBox";
             this.CPUV2ListComboBox.Size = new System.Drawing.Size(378, 23);
             this.CPUV2ListComboBox.TabIndex = 8;
+            this.CPUV2ListComboBox.SelectedIndexChanged += new System.EventHandler(this.CPUV2ListComboBox_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -386,6 +403,7 @@ namespace ITWorkstationsInc
             this.PCCaseListComboBox.Name = "PCCaseListComboBox";
             this.PCCaseListComboBox.Size = new System.Drawing.Size(378, 23);
             this.PCCaseListComboBox.TabIndex = 4;
+            this.PCCaseListComboBox.SelectedIndexChanged += new System.EventHandler(this.PCCaseListComboBox_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -409,6 +427,7 @@ namespace ITWorkstationsInc
             this.MainCalculButton.TabIndex = 7;
             this.MainCalculButton.Text = "OK";
             this.MainCalculButton.UseVisualStyleBackColor = false;
+            this.MainCalculButton.Click += new System.EventHandler(this.MainCalculButton_Click);
             // 
             // groupBox2
             // 
@@ -562,17 +581,6 @@ namespace ITWorkstationsInc
             this.NVIDIAStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.NVIDIAStripMenuItem.Text = "NVIDIA";
             // 
-            // ReloadButton
-            // 
-            this.ReloadButton.Image = global::ITWorkstationsInc.Properties.Resources.pngkey_com_update_png_845413;
-            this.ReloadButton.Location = new System.Drawing.Point(618, 431);
-            this.ReloadButton.Name = "ReloadButton";
-            this.ReloadButton.Size = new System.Drawing.Size(37, 37);
-            this.ReloadButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ReloadButton.TabIndex = 4;
-            this.ReloadButton.TabStop = false;
-            this.ReloadButton.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ReloadButton_MouseClick);
-            // 
             // FormITWorkstation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -589,6 +597,7 @@ namespace ITWorkstationsInc
             this.Load += new System.EventHandler(this.ITWorkstation_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ReloadButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
@@ -601,7 +610,6 @@ namespace ITWorkstationsInc
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.UpdateButton)).EndInit();
             this.UpdateItemContextMenuStrip.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ReloadButton)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -631,27 +639,27 @@ namespace ITWorkstationsInc
         private System.Windows.Forms.ToolStripMenuItem HDDStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem RAMStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem NVIDIAStripMenuItem;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label txtNVIDIAPrice;
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.ComboBox NVIDIAListComboBox;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label txtRAMPrice;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.ComboBox RAMListComboBox;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label txtHDDPrice;
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.ComboBox HDDListComboBox;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label txtSDDPrice;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.ComboBox SDDListComboBox;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label txtCPUV3Price;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.ComboBox CPUV3ListComboBox;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label txtCPUV2Price;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.ComboBox CPUV2ListComboBox;
         private System.Windows.Forms.Label label3;
