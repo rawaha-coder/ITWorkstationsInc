@@ -67,6 +67,8 @@ namespace ITWorkstationsInc.View
             if (NamesList != null)
             {
                 comboBoxAddCPUV3.DataSource = NamesList;
+                comboBoxAddCPUV3.SelectedIndex = -1;
+                textBoxAddCPUV3Price.Text = "";
             }
         }
 
@@ -129,6 +131,10 @@ namespace ITWorkstationsInc.View
                 Console.WriteLine(ex.Message);
             }
             initForm();
+            if (itemDictionary.Count == 0)
+            {
+                comboBoxAddCPUV3.Text = "";
+            }
         }
 
         private void buttonCloseCPUV3AddForm_Click(object sender, EventArgs e)

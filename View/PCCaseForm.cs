@@ -68,6 +68,8 @@ namespace ITWorkstationsInc.View
             if (NamesList != null)
             {
                 comboBoxAddPCCase.DataSource = NamesList;
+                comboBoxAddPCCase.SelectedIndex = -1;
+                textBoxAddPCCasePrice.Text = "";
             }
         }
 
@@ -129,6 +131,10 @@ namespace ITWorkstationsInc.View
                 Console.WriteLine(ex.Message);
             }
             initForm();
+            if (mCaseBoxDictionary.Count == 0)
+            {
+                comboBoxAddPCCase.Text = "";
+            }
         }
 
         private void buttonPCCaseAddForm_Click(object sender, EventArgs e)

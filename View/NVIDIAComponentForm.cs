@@ -67,6 +67,8 @@ namespace ITWorkstationsInc.View
             if (NamesList != null)
             {
                 comboBoxAddNVIDIAComponent.DataSource = NamesList;
+                comboBoxAddNVIDIAComponent.SelectedIndex = -1;
+                textBoxAddNVIDIAComponentPrice.Text = "";
             }
         }
 
@@ -128,6 +130,10 @@ namespace ITWorkstationsInc.View
                 Console.WriteLine(ex.Message);
             }
             initForm();
+            if (itemDictionary.Count == 0)
+            {
+                comboBoxAddNVIDIAComponent.Text = "";
+            }
         }
 
         private void buttonCloseNVIDIAComponentAddForm_Click(object sender, EventArgs e)

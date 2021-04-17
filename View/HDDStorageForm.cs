@@ -67,6 +67,8 @@ namespace ITWorkstationsInc.View
             if (NamesList != null)
             {
                 comboBoxAddHDD.DataSource = NamesList;
+                comboBoxAddHDD.SelectedIndex = -1;
+                textBoxAddHDDPrice.Text = "";
             }
         }
 
@@ -128,6 +130,10 @@ namespace ITWorkstationsInc.View
                 Console.WriteLine(ex.Message);
             }
             initForm();
+            if (itemDictionary.Count == 0)
+            {
+                comboBoxAddHDD.Text = "";
+            }
         }
 
         private void buttonCloseHDDAddForm_Click(object sender, EventArgs e)

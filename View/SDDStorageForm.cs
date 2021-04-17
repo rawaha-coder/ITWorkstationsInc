@@ -67,6 +67,8 @@ namespace ITWorkstationsInc.View
             if (NamesList != null)
             {
                 comboBoxAddSDD.DataSource = NamesList;
+                comboBoxAddSDD.SelectedIndex = -1;
+                textBoxAddSDDPrice.Text = "";
             }
         }
 
@@ -128,6 +130,10 @@ namespace ITWorkstationsInc.View
                 Console.WriteLine(ex.Message);
             }
             initForm();
+            if (itemDictionary.Count == 0)
+            {
+                comboBoxAddSDD.Text = "";
+            }
         }
 
         private void buttonCloseSDDAddForm_Click(object sender, EventArgs e)
