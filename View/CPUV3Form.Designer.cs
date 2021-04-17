@@ -123,9 +123,9 @@ namespace ITWorkstationsInc.View
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(67, 76);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 15);
+            this.label1.Size = new System.Drawing.Size(42, 15);
             this.label1.TabIndex = 2;
-            this.label1.Text = "CPU V3:";
+            this.label1.Text = "CPU 2:";
             // 
             // textBoxAddCPUV3Price
             // 
@@ -133,6 +133,7 @@ namespace ITWorkstationsInc.View
             this.textBoxAddCPUV3Price.Name = "textBoxAddCPUV3Price";
             this.textBoxAddCPUV3Price.Size = new System.Drawing.Size(147, 23);
             this.textBoxAddCPUV3Price.TabIndex = 1;
+
             // 
             // comboBoxAddCPUV3
             // 

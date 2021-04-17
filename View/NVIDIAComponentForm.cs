@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using ITWorkstationsInc.Database;
 using ITWorkstationsInc.Model;
+using ITWorkstationsInc.Utility;
 
 namespace ITWorkstationsInc.View
 {
@@ -74,17 +75,30 @@ namespace ITWorkstationsInc.View
 
         private void buttonAddNVIDIAComponentData_Click(object sender, EventArgs e)
         {
-            NVIDIAComponent item = new NVIDIAComponent();
-            item.Name = comboBoxAddNVIDIAComponent.Text;
-            item.Price = Convert.ToDouble(textBoxAddNVIDIAComponentPrice.Text);
-            if (mNVIDIAComponentDAO.addData(item))
+            if (comboBoxAddNVIDIAComponent.Text == "" || !Utility.ValidateInput.validateNumber(textBoxAddNVIDIAComponentPrice.Text))
             {
-                MessageBox.Show("Item Added");
+                MessageBox.Show("Item Not Added, check the values");
+                return;
             }
-            else
+            try
+            {
+                NVIDIAComponent item = new NVIDIAComponent();
+                item.Name = comboBoxAddNVIDIAComponent.Text;
+                item.Price = Convert.ToDouble(textBoxAddNVIDIAComponentPrice.Text);
+                if (mNVIDIAComponentDAO.addData(item))
+                {
+                    MessageBox.Show("Item Added");
+                }
+                else
+                {
+                    MessageBox.Show("Item Not Added, check the values");
+                }
+            }
+            catch(Exception eex)
             {
                 MessageBox.Show("Item Not Added, check the values");
             }
+
             initForm();
         }
 
@@ -162,5 +176,6 @@ namespace ITWorkstationsInc.View
                 Console.WriteLine(ex.Message);
             }
         }
+
     }
 }

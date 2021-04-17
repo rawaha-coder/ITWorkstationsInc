@@ -7,6 +7,8 @@ using System.Text;
 using System.Windows.Forms;
 using ITWorkstationsInc.Database;
 using ITWorkstationsInc.Model;
+using ITWorkstationsInc.Utility;
+
 
 namespace ITWorkstationsInc.View
 {
@@ -75,17 +77,30 @@ namespace ITWorkstationsInc.View
 
         private void buttonAddPCCaseData_Click(object sender, EventArgs e)
         {
-            CaseBox caseBox = new CaseBox();
-            caseBox.CaseName = comboBoxAddPCCase.Text;
-            caseBox.CasePrice = Convert.ToDouble(textBoxAddPCCasePrice.Text);
-            if (mPCCaseDAO.addData(caseBox))
+            if (comboBoxAddPCCase.Text == "" || !Utility.ValidateInput.validateNumber(textBoxAddPCCasePrice.Text))
             {
-                MessageBox.Show("Item Added");
+                MessageBox.Show("Item Not Added, check the values");
+                return;
             }
-            else
+            try
+            {
+                CaseBox caseBox = new CaseBox();
+                caseBox.CaseName = comboBoxAddPCCase.Text;
+                caseBox.CasePrice = Convert.ToDouble(textBoxAddPCCasePrice.Text);
+                if (mPCCaseDAO.addData(caseBox))
+                {
+                    MessageBox.Show("Item Added");
+                }
+                else
+                {
+                    MessageBox.Show("Item Not Added, check the values");
+                }
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show("Item Not Added, check the values");
             }
+
             initForm();
         }
 
@@ -102,12 +117,12 @@ namespace ITWorkstationsInc.View
                 }
                 else
                 {
-                    MessageBox.Show("Item Not Updated");
+                    MessageBox.Show("Item Not Updated, check the values");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                MessageBox.Show("Item Not Updated, check the values");
             }
             initForm();
         }
@@ -128,7 +143,7 @@ namespace ITWorkstationsInc.View
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                MessageBox.Show("Item Not Deleted");
             }
             initForm();
             if (mCaseBoxDictionary.Count == 0)

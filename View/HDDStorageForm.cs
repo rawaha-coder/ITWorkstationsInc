@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using ITWorkstationsInc.Database;
 using ITWorkstationsInc.Model;
+using ITWorkstationsInc.Utility;
 
 namespace ITWorkstationsInc.View
 {
@@ -74,17 +75,30 @@ namespace ITWorkstationsInc.View
 
         private void buttonAddHDDData_Click(object sender, EventArgs e)
         {
-            HDDStorage item = new HDDStorage();
-            item.Name = comboBoxAddHDD.Text;
-            item.Price = Convert.ToDouble(textBoxAddHDDPrice.Text);
-            if (mHDDStorageDAO.addData(item))
+            if (comboBoxAddHDD.Text == "" || !Utility.ValidateInput.validateNumber(textBoxAddHDDPrice.Text))
             {
-                MessageBox.Show("Item Added");
+                MessageBox.Show("Item Not Added, check the values");
+                return;
             }
-            else
+            try
+            {
+                HDDStorage item = new HDDStorage();
+                item.Name = comboBoxAddHDD.Text;
+                item.Price = Convert.ToDouble(textBoxAddHDDPrice.Text);
+                if (mHDDStorageDAO.addData(item))
+                {
+                    MessageBox.Show("Item Added");
+                }
+                else
+                {
+                    MessageBox.Show("Item Not Added, check the values");
+                }
+            }
+            catch(Exception ex)
             {
                 MessageBox.Show("Item Not Added, check the values");
             }
+
             initForm();
         }
 
@@ -162,5 +176,6 @@ namespace ITWorkstationsInc.View
                 Console.WriteLine(ex.Message);
             }
         }
+
     }
 }

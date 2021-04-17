@@ -74,6 +74,11 @@ namespace ITWorkstationsInc.View
 
         private void buttonAddSDDData_Click(object sender, EventArgs e)
         {
+            if (comboBoxAddSDD.Text == "" || !Utility.ValidateInput.validateNumber(textBoxAddSDDPrice.Text))
+            {
+                MessageBox.Show("Item Not Added, check the values");
+                return;
+            }
             SDDStorage item = new SDDStorage();
             item.Name = comboBoxAddSDD.Text;
             item.Price = Convert.ToDouble(textBoxAddSDDPrice.Text);

@@ -75,17 +75,30 @@ namespace ITWorkstationsInc.View
 
         private void buttonAddRAMComponentData_Click(object sender, EventArgs e)
         {
-            RAMComponent item = new RAMComponent();
-            item.Name = comboBoxAddRAMComponent.Text;
-            item.Price = Convert.ToDouble(textBoxAddRAMComponentPrice.Text);
-            if (mRAMComponentDAO.addData(item))
+            if (comboBoxAddRAMComponent.Text == "" || !Utility.ValidateInput.validateNumber(textBoxAddRAMComponentPrice.Text))
             {
-                MessageBox.Show("Item Added");
+                MessageBox.Show("Item Not Added, check the values");
+                return;
             }
-            else
+            try
+            {
+                RAMComponent item = new RAMComponent();
+                item.Name = comboBoxAddRAMComponent.Text;
+                item.Price = Convert.ToDouble(textBoxAddRAMComponentPrice.Text);
+                if (mRAMComponentDAO.addData(item))
+                {
+                    MessageBox.Show("Item Added");
+                }
+                else
+                {
+                    MessageBox.Show("Item Not Added, check the values");
+                }
+            }
+            catch(Exception ex)
             {
                 MessageBox.Show("Item Not Added, check the values");
             }
+
             initForm();
         }
 
