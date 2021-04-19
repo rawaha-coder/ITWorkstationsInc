@@ -16,34 +16,26 @@ namespace ITWorkstationsInc
 {
     public partial class FormITWorkstation : Form
     {
-        PCCaseDAO mPCCaseDAO = PCCaseDAO.getInstance();
-        CpuV2DAO mCPUV2DAO = CpuV2DAO.getInstance();
-        CpuV3DAO mCPUV3DAO = CpuV3DAO.getInstance();
-        SDDStorageDAO mSDDStorageDAO = SDDStorageDAO.getInstance();
-        HDDStorageDAO mHDDStorageDAO = HDDStorageDAO.getInstance();
-        RAMComponentDAO mRAMComponentDAO = RAMComponentDAO.getInstance();
-        NVIDIAComponentDAO mNVIDIAComponentDAO = NVIDIAComponentDAO.getInstance();
 
-        Dictionary<string, CaseBox> mCaseBoxDictionary = new Dictionary<string, CaseBox>();
-        Dictionary<string, CPUV2> mCPUV2Dictionary = new Dictionary<string, CPUV2>();
-        Dictionary<string, CPUV3> mCPUV3Dictionary = new Dictionary<string, CPUV3>();
-        Dictionary<string, SDDStorage> mSDDDictionary = new Dictionary<string, SDDStorage>();
-        Dictionary<string, HDDStorage> mHDDDictionary = new Dictionary<string, HDDStorage>();
-        Dictionary<string, RAMComponent> mRAMComponentDictionary = new Dictionary<string, RAMComponent>();
-        Dictionary<string, NVIDIAComponent> mNVIDIAComponentDictionary = new Dictionary<string, NVIDIAComponent>();
+        ProductDAO mProductDAO = ProductDAO.getInstance();
 
-        double mCaseBoxPrice = 0.0;
-        double mCPUV2Price = 0.0;
-        double mCPUV3DPrice = 0.0;
-        double mSDDPrice = 0.0;
+        Dictionary<string, Product> mPCDictionary = new Dictionary<string, Product>();
+        Dictionary<string, Product> mCPUDictionary = new Dictionary<string, Product>();
+        Dictionary<string, Product> mSDDDictionary = new Dictionary<string, Product>();
+        Dictionary<string, Product> mHDDDictionary = new Dictionary<string, Product>();
+        Dictionary<string, Product> mRAMDictionary = new Dictionary<string, Product>();
+        Dictionary<string, Product> mNVIDIADictionary = new Dictionary<string, Product>();
+
+        double mPCPrice = 0.0;
+        double mCPUPrice = 0.0;
+        double mSSDPrice = 0.0;
         double mHDDDPrice = 0.0;
         double mRAMPrice = 0.0;
         double mNVIDIAPrice = 0.0;
 
         string mCaseBoxName = "";
-        string mCPUV2Name = "";
-        string mCPUV3DName = "";
-        string mSDDName = "";
+        string mCPU1Name = "";
+        string mSSDName = "";
         string mHDDDName = "";
         string mRAMName = "";
         string mNVIDIAName = "";
@@ -56,7 +48,6 @@ namespace ITWorkstationsInc
 
         private void ITWorkstation_Load(object sender, EventArgs e)
         {
-            //mNVIDIAComponentDAO.CreateTable();
             ReLoadLists();
             initToZeo();
             initToZeroString();
@@ -64,10 +55,9 @@ namespace ITWorkstationsInc
 
         private void initToZeo()
         {
-            mCaseBoxPrice = 0.0;
-            mCPUV2Price = 0.0;
-            mCPUV3DPrice = 0.0;
-            mSDDPrice = 0.0;
+            mPCPrice = 0.0;
+            mCPUPrice = 0.0;
+            mSSDPrice = 0.0;
             mHDDDPrice = 0.0;
             mRAMPrice = 0.0;
             mNVIDIAPrice = 0.0;
@@ -77,7 +67,6 @@ namespace ITWorkstationsInc
         {
             txtPCCasePrice.Text = "0.0";
             txtCPUV2Price.Text = "0.0";
-            txtCPUV3Price.Text = "0.0";
             txtSDDPrice.Text = "0.0";
             txtHDDPrice.Text = "0.0";
             txtRAMPrice.Text = "0.0";
@@ -87,9 +76,8 @@ namespace ITWorkstationsInc
             ProfitTextBox.Text = "";
 
             mCaseBoxName = "";
-            mCPUV2Name = "";
-            mCPUV3DName = "";
-            mSDDName = "";
+            mCPU1Name = "";
+            mSSDName = "";
             mHDDDName = "";
             mRAMName = "";
             mNVIDIAName = "";
@@ -100,12 +88,11 @@ namespace ITWorkstationsInc
         public void ReLoadLists()
         {
             initPCCaseList();
-            initCPUV2List();
-            initCPUV3List();
+            initCPUList();
             initSDDList();
             initHDDList();
-            initRAMComponentList();
-            initNVIDIAComponentList();
+            initRAMList();
+            initNVIDIAList();
             initToZeo();
             initToZeroString();
         }
@@ -113,15 +100,15 @@ namespace ITWorkstationsInc
         private void initPCCaseList()
         {
             List<string> NamesList = new List<string>();
-            mCaseBoxDictionary.Clear();
+            mPCDictionary.Clear();
             try
             {
-                mCaseBoxDictionary = mPCCaseDAO.CaseBoxDictionary();
-                NamesList.AddRange(mCaseBoxDictionary.Keys);
+                mPCDictionary = mProductDAO.ProductDictionary(Constant.CASEBOX); 
+                NamesList.AddRange(mPCDictionary.Keys);
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                MessageBox.Show("Error fetch data to list: " + e.Message);
             }
             if (NamesList != null)
             {
@@ -130,18 +117,18 @@ namespace ITWorkstationsInc
             }
         }
 
-        private void initCPUV2List()
+        private void initCPUList()
         {
             List<string> NamesList = new List<string>();
-            mCPUV2Dictionary.Clear();
+            mCPUDictionary.Clear();
             try
             {
-                mCPUV2Dictionary = mCPUV2DAO.CPUV2Dictionary();
-                NamesList.AddRange(mCPUV2Dictionary.Keys);
+                mCPUDictionary = mProductDAO.ProductDictionary(Constant.CPU);
+                NamesList.AddRange(mCPUDictionary.Keys);
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                MessageBox.Show("Error fetch data to list: " + e.Message);
             }
             if (NamesList != null)
             {
@@ -150,25 +137,6 @@ namespace ITWorkstationsInc
             }
         }
 
-        private void initCPUV3List()
-        {
-            List<string> NamesList = new List<string>();
-            mCPUV3Dictionary.Clear();
-            try
-            {
-                mCPUV3Dictionary = mCPUV3DAO.CPUV3Dictionary();
-                NamesList.AddRange(mCPUV3Dictionary.Keys);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-            if (NamesList != null)
-            {
-                CPUV3ListComboBox.DataSource = NamesList;
-                CPUV3ListComboBox.SelectedIndex = -1;
-            }
-        }
 
         private void initSDDList()
         {
@@ -176,12 +144,12 @@ namespace ITWorkstationsInc
             mSDDDictionary.Clear();
             try
             {
-                mSDDDictionary = mSDDStorageDAO.SDDDictionary();
+                mSDDDictionary = mProductDAO.ProductDictionary(Constant.SSD);
                 NamesList.AddRange(mSDDDictionary.Keys);
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                MessageBox.Show("Error fetch data to list: " + e.Message);
             }
             if (NamesList != null)
             {
@@ -196,12 +164,12 @@ namespace ITWorkstationsInc
             mHDDDictionary.Clear();
             try
             {
-                mHDDDictionary = mHDDStorageDAO.HDDDictionary();
+                mHDDDictionary = mProductDAO.ProductDictionary(Constant.HDD);
                 NamesList.AddRange(mHDDDictionary.Keys);
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                MessageBox.Show("Error fetch data to list: " + e.Message);
             }
             if (NamesList != null)
             {
@@ -211,18 +179,18 @@ namespace ITWorkstationsInc
         }
 
 
-        private void initRAMComponentList()
+        private void initRAMList()
         {
             List<string> NamesList = new List<string>();
-            mRAMComponentDictionary.Clear();
+            mRAMDictionary.Clear();
             try
             {
-                mRAMComponentDictionary = mRAMComponentDAO.RAMComponentDictionary();
-                NamesList.AddRange(mRAMComponentDictionary.Keys);
+                mRAMDictionary = mProductDAO.ProductDictionary(Constant.RAM);
+                NamesList.AddRange(mRAMDictionary.Keys);
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                MessageBox.Show("Error fetch data to list: " + e.Message);
             }
             if (NamesList != null)
             {
@@ -231,18 +199,18 @@ namespace ITWorkstationsInc
             }
         }
 
-        private void initNVIDIAComponentList()
+        private void initNVIDIAList()
         {
             List<string> NamesList = new List<string>();
-            mNVIDIAComponentDictionary.Clear();
+            mNVIDIADictionary.Clear();
             try
             {
-                mNVIDIAComponentDictionary = mNVIDIAComponentDAO.NVIDIAComponentDictionary();
-                NamesList.AddRange(mNVIDIAComponentDictionary.Keys);
+                mNVIDIADictionary = mProductDAO.ProductDictionary(Constant.NVIDIA);
+                NamesList.AddRange(mNVIDIADictionary.Keys);
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                MessageBox.Show("Error fetch data to list: " + e.Message);
             }
             if (NamesList != null)
             {
@@ -256,38 +224,33 @@ namespace ITWorkstationsInc
             if (e.ClickedItem.Name == PCCaseStripMenuItem.Name)
             {
 
-                PCCaseForm AddItemForm = new PCCaseForm(this);
+                ProductForm AddItemForm = new ProductForm(this, Constant.CASEBOX);
                 AddItemForm.ShowAddForm();
 
             }
-            else if (e.ClickedItem.Name == CPUV2StripMenuItem.Name)
+            else if (e.ClickedItem.Name == CPUStripMenuItem.Name)
             {
-                CPUV2Form AddItemForm = new CPUV2Form(this);
+                ProductForm AddItemForm = new ProductForm(this, Constant.CPU);
                 AddItemForm.ShowAddForm();
             }
-            else if (e.ClickedItem.Name == CPUV3StripMenuItem.Name)
+            else if (e.ClickedItem.Name == SSDStripMenuItem.Name)
             {
-                CPUV3Form AddItemForm = new CPUV3Form(this);
-                AddItemForm.ShowAddForm();
-            }
-            else if (e.ClickedItem.Name == SDDStripMenuItem.Name)
-            {
-                SDDStorageForm AddItemForm = new SDDStorageForm(this);
+                ProductForm AddItemForm = new ProductForm(this, Constant.SSD);
                 AddItemForm.ShowAddForm();
             }
             else if (e.ClickedItem.Name == HDDStripMenuItem.Name)
             {
-                HDDStorageForm AddItemForm = new HDDStorageForm(this);
+                ProductForm AddItemForm = new ProductForm(this, Constant.HDD);
                 AddItemForm.ShowAddForm();
             }
             else if (e.ClickedItem.Name == RAMStripMenuItem.Name)
             {
-                RAMComponentForm AddItemForm = new RAMComponentForm(this);
+                ProductForm AddItemForm = new ProductForm(this, Constant.RAM);
                 AddItemForm.ShowAddForm();
             }
             else if (e.ClickedItem.Name == NVIDIAStripMenuItem.Name)
             {
-                NVIDIAComponentForm AddItemForm = new NVIDIAComponentForm(this);
+                ProductForm AddItemForm = new ProductForm(this, Constant.NVIDIA);
                 AddItemForm.ShowAddForm();
             }
         }
@@ -307,140 +270,120 @@ namespace ITWorkstationsInc
 
         private void PCCaseListComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CaseBox caseBox = null;
+            Product item = null;
             try
             {
-                caseBox = mCaseBoxDictionary.GetValueOrDefault(PCCaseListComboBox.GetItemText(PCCaseListComboBox.SelectedItem));
+                item = mPCDictionary.GetValueOrDefault(PCCaseListComboBox.GetItemText(PCCaseListComboBox.SelectedItem));
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-            if (caseBox != null)
+            if (item != null)
             {
-                mCaseBoxPrice = caseBox.CasePrice;
-                txtPCCasePrice.Text = mCaseBoxPrice.ToString();
-                mCaseBoxName = caseBox.CaseName;
+                mPCPrice = item.Price;
+                txtPCCasePrice.Text = mPCPrice.ToString();
+                mCaseBoxName = item.Name;
 
             }
         }
 
         private void CPUV2ListComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CPUV2 cpuv2 = null;
+            Product item = null;
             try
             {
-                cpuv2 = mCPUV2Dictionary.GetValueOrDefault(CPUV2ListComboBox.GetItemText(CPUV2ListComboBox.SelectedItem));
+                item = mCPUDictionary.GetValueOrDefault(CPUV2ListComboBox.GetItemText(CPUV2ListComboBox.SelectedItem));
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
 
-            if (cpuv2 != null)
+            if (item != null)
             {
-                mCPUV2Price = cpuv2.Cpuv2Price;
-                txtCPUV2Price.Text = mCPUV2Price.ToString();
-                mCPUV2Name = cpuv2.Cpuv2Name;
-
-            }
-        }
-
-        private void CPUV3ListComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            CPUV3 cpuv3 = null;
-            try
-            {
-                cpuv3 = mCPUV3Dictionary.GetValueOrDefault(CPUV3ListComboBox.GetItemText(CPUV3ListComboBox.SelectedItem));
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            if (cpuv3 != null)
-            {
-                mCPUV3DPrice = cpuv3.Cpuv3Price;
-                txtCPUV3Price.Text = mCPUV3DPrice.ToString();
-                mCPUV3DName = cpuv3.Cpuv3Name;
+                mCPUPrice = item.Price;
+                txtCPUV2Price.Text = mCPUPrice.ToString();
+                mCPU1Name = item.Name;
 
             }
         }
 
         private void SDDListComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SDDStorage sDDStorage = null;
+            Product item = null;
             try
             {
-                sDDStorage = mSDDDictionary.GetValueOrDefault(SDDListComboBox.GetItemText(SDDListComboBox.SelectedItem));
+                item = mSDDDictionary.GetValueOrDefault(SDDListComboBox.GetItemText(SDDListComboBox.SelectedItem));
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-            if (sDDStorage != null)
+            if (item != null)
             {
-                mSDDPrice = sDDStorage.Price;
-                txtSDDPrice.Text = mSDDPrice.ToString();
-                mSDDName = sDDStorage.Name;
+                mSSDPrice = item.Price;
+                txtSDDPrice.Text = mSSDPrice.ToString();
+                mSSDName = item.Name;
 
             }
         }
 
         private void HDDListComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            HDDStorage hDDStorage = null;
+            Product item = null;
             try
             {
-                hDDStorage = mHDDDictionary.GetValueOrDefault(HDDListComboBox.GetItemText(HDDListComboBox.SelectedItem));
+                item = mHDDDictionary.GetValueOrDefault(HDDListComboBox.GetItemText(HDDListComboBox.SelectedItem));
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-            if (hDDStorage != null)
+            if (item != null)
             {
-                mHDDDPrice = hDDStorage.Price;
+                mHDDDPrice = item.Price;
                 txtHDDPrice.Text = mHDDDPrice.ToString();
-                mHDDDName = hDDStorage.Name;
+                mHDDDName = item.Name;
 
             }
         }
 
         private void RAMListComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            RAMComponent ram = null;
+            Product item = null;
             try
             {
-                ram = mRAMComponentDictionary.GetValueOrDefault(RAMListComboBox.GetItemText(RAMListComboBox.SelectedItem));
+                item = mRAMDictionary.GetValueOrDefault(RAMListComboBox.GetItemText(RAMListComboBox.SelectedItem));
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-            if (ram != null)
+            if (item != null)
             {
-                mRAMPrice = ram.Price;
+                mRAMPrice = item.Price;
                 txtRAMPrice.Text = mRAMPrice.ToString();
-                mRAMName = ram.Name;
+                mRAMName = item.Name;
             }
         }
 
         private void NVIDIAListComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            NVIDIAComponent nVIDIA = null;
+            Product item = null;
             try
             {
-                nVIDIA = mNVIDIAComponentDictionary.GetValueOrDefault(NVIDIAListComboBox.GetItemText(NVIDIAListComboBox.SelectedItem));
+                item = mNVIDIADictionary.GetValueOrDefault(NVIDIAListComboBox.GetItemText(NVIDIAListComboBox.SelectedItem));
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-            if (nVIDIA != null)
+            if (item != null)
             {
-                mNVIDIAPrice = nVIDIA.Price;
+                mNVIDIAPrice = item.Price;
                 txtNVIDIAPrice.Text = mNVIDIAPrice.ToString();
-                 mNVIDIAName = nVIDIA.Name;
+                 mNVIDIAName = item.Name;
             }
         }
 
@@ -448,18 +391,22 @@ namespace ITWorkstationsInc
         {
             var price = CalculTotalPay();
             txtMainResultCalcul.Text = price.ToString();
-
             GetArticle();
+        }
 
+        private double CalculTotalPay()
+        {
+            double total = 0.0;
+            total = CalculTotalPrice() + (CalculTotalPrice() * FeePercentage()) + (CalculTotalPrice() * ProfitPercentage());
+            return total;
         }
 
         private void GetArticle()
         {
             MainRichTextBox.Clear();
             MainRichTextBox.Text += "PC: " + mCaseBoxName + ".\n";
-            MainRichTextBox.Text += "CPU V2: " + mCPUV2Name + ".\n";
-            MainRichTextBox.Text += "CPU V3: " + mCPUV3DName + ".\n";
-            MainRichTextBox.Text += "SDD: " + mSDDName + ".\n";
+            MainRichTextBox.Text += "CPU: " + mCPU1Name + ".\n";
+            MainRichTextBox.Text += "SDD: " + mSSDName + ".\n";
             MainRichTextBox.Text += "HDD: " + mHDDDName + ".\n";
             MainRichTextBox.Text += "RAM: " + mRAMName + ".\n";
             MainRichTextBox.Text += "Nvidia: " + mNVIDIAName + ".";
@@ -471,16 +418,10 @@ namespace ITWorkstationsInc
             MainRichTextBox.Copy();
         }
 
-        private double CalculTotalPay()
-        {
-            double total = 0.0;
-            total = CalculTotalPrice() + (CalculTotalPrice() * FeePercentage()) + (CalculTotalPrice() * ProfitPercentage());
-            return total;
-        }
 
         private double CalculTotalPrice()
         {
-            double CalculTotalPrice = mCaseBoxPrice + mCPUV2Price + mCPUV3DPrice + mSDDPrice + mHDDDPrice + mRAMPrice + mNVIDIAPrice;
+            double CalculTotalPrice = mPCPrice + mCPUPrice + mSSDPrice + mHDDDPrice + mRAMPrice + mNVIDIAPrice;
             return CalculTotalPrice;
 
         }
@@ -512,41 +453,28 @@ namespace ITWorkstationsInc
             return feePercenage;
         }
 
-        private bool ProfitNonNumberEntered = false;
-
-        private void ProfitTextBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            ProfitNonNumberEntered = ValidateInput.NonNumberEntered(e);
-        }
-
         private void ProfitTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (ProfitNonNumberEntered)
+            if ((e.KeyChar >= '0' && e.KeyChar <= '9') || e.KeyChar == 8)
             {
-                MessageBox.Show("Only numeric value accepted");
+                e.Handled = false;
+            }
+            else
+            {
                 e.Handled = true;
             }
-        }
-
-        private bool FeeNonNumberEntered = false;
-
-        private void FeeTextBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            FeeNonNumberEntered = ValidateInput.NonNumberEntered(e);
         }
 
         private void FeeTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (FeeNonNumberEntered)
+            if ((e.KeyChar >= '0' && e.KeyChar <= '9') || e.KeyChar == 8)
             {
-                MessageBox.Show("Only numeric value accepted");
+                e.Handled = false;
+            }
+            else
+            {
                 e.Handled = true;
             }
-        }
-
-        private void FeeTextBox_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
