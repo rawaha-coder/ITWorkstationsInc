@@ -39,7 +39,7 @@ namespace ITWorkstationsInc.Database
 
             var selectStmt = "SELECT * FROM " + TABLE_PRODUCT
                 + " WHERE " + COLUMN_PRODUCT_TYPE + " = " + type + " "
-                + " ORDER BY " + COLUMN_PRODUCT_NAME + " ASC;";
+                + " ORDER BY " + COLUMN_PRODUCT_PRICE + " ASC;";
 
             try
             {
