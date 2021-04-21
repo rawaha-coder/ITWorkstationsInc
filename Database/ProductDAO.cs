@@ -6,36 +6,40 @@ using ITWorkstationsInc.Model;
 
 namespace ITWorkstationsInc.Database
 {
-    class RAMComponentDAO:DAO
+    class ProductDAO:DAO
     {
-        public const string TABLE_RAM_COMPONENT = "RAMComponent";
-        public const string COLUMN_RAM_COMPONENT_ID = "Id";
-        public const string COLUMN_RAM_COMPONENT_NAME = "Name";
-        public const string COLUMN_RAM_COMPONENT_PRICE = "Price";
+        public const string TABLE_PRODUCT = "Product";
+        public const string COLUMN_PRODUCT_ID = "Id";
+        public const string COLUMN_PRODUCT_NAME = "Name";
+        public const string COLUMN_PRODUCT_PRICE = "Price";
+        public const string COLUMN_PRODUCT_TYPE = "Type";
 
-        private static RAMComponentDAO instance = new RAMComponentDAO();
+        private static ProductDAO instance = new ProductDAO();
 
-        private RAMComponentDAO() : base()
+        private ProductDAO() : base()
         {
         }
 
-        public static RAMComponentDAO getInstance()
+        public static ProductDAO getInstance()
         {
             if (instance == null)
             {
-                instance = new RAMComponentDAO();
+                instance = new ProductDAO();
             }
             return instance;
         }
 
-        //*************************************************************
-        //Get data COMPONENT as Dictionary by COMPONENT name
-        //*************************************************************
-        internal Dictionary<string, RAMComponent> RAMComponentDictionary()
-        {
-            Dictionary<string, RAMComponent> dictionary = new Dictionary<string, RAMComponent>();
 
-            var selectStmt = "SELECT * FROM " + TABLE_RAM_COMPONENT + " ORDER BY " + COLUMN_RAM_COMPONENT_NAME + " ASC;";
+        //*************************************************************
+        //Get Product data as Dictionary by product name
+        //*************************************************************
+        internal Dictionary<string, Product> ProductDictionary(int type)
+        {
+            Dictionary<string, Product> dictionary = new Dictionary<string, Product>();
+
+            var selectStmt = "SELECT * FROM " + TABLE_PRODUCT
+                + " WHERE " + COLUMN_PRODUCT_TYPE + " = " + type + " "
+                + " ORDER BY " + COLUMN_PRODUCT_PRICE + " ASC;";
 
             try
             {
@@ -46,11 +50,12 @@ namespace ITWorkstationsInc.Database
                 {
                     while (result.Read())
                     {
-                        RAMComponent item = new RAMComponent
+                        Product item = new Product
                         {
-                            Id = Convert.ToInt32((result[COLUMN_RAM_COMPONENT_ID]).ToString()),
-                            Name = (string)result[COLUMN_RAM_COMPONENT_NAME],
-                            Price = (double)result[COLUMN_RAM_COMPONENT_PRICE]
+                            Id = Convert.ToInt32((result[COLUMN_PRODUCT_ID]).ToString()),
+                            Name = (string)result[COLUMN_PRODUCT_NAME],
+                            Price = (double)result[COLUMN_PRODUCT_PRICE],
+                            Type = Convert.ToInt32((result[COLUMN_PRODUCT_TYPE]).ToString())
                         };
                         dictionary.Add(item.Name, item);
                     }
@@ -68,13 +73,16 @@ namespace ITWorkstationsInc.Database
             }
         }
 
+
         //*******************************
-        //Get all COMPONENT data
+        //Get all Product data
         //*******************************
-        public List<RAMComponent> getData()
+        public List<Product> getData(int type)
         {
-            List<RAMComponent> list = new List<RAMComponent>();
-            var selectStmt = "SELECT * FROM " + TABLE_RAM_COMPONENT + " ORDER BY " + COLUMN_RAM_COMPONENT_NAME + " ASC;";
+            List<Product> list = new List<Product>();
+            var selectStmt = "SELECT * FROM " + TABLE_PRODUCT
+                + " WHERE " + COLUMN_PRODUCT_TYPE + " = " + type + " "
+                + " ORDER BY " + COLUMN_PRODUCT_NAME + " ASC;";
 
             try
             {
@@ -85,11 +93,12 @@ namespace ITWorkstationsInc.Database
                 {
                     while (result.Read())
                     {
-                        RAMComponent item = new RAMComponent
+                        Product item = new Product
                         {
-                            Id = Convert.ToInt32((result[COLUMN_RAM_COMPONENT_ID]).ToString()),
-                            Name = (string)result[COLUMN_RAM_COMPONENT_NAME],
-                            Price = (double)result[COLUMN_RAM_COMPONENT_PRICE]
+                            Id = Convert.ToInt32((result[COLUMN_PRODUCT_ID]).ToString()),
+                            Name = (string)result[COLUMN_PRODUCT_NAME],
+                            Price = (double)result[COLUMN_PRODUCT_PRICE],
+                            Type = Convert.ToInt32((result[COLUMN_PRODUCT_TYPE]).ToString())
                         };
                         list.Add(item);
                     }
@@ -108,23 +117,26 @@ namespace ITWorkstationsInc.Database
         }
 
         //*******************************
-        //Add new RAM_COMPONENT data 
+        //Add new Product data 
         //*******************************
-        public bool addData(RAMComponent item)
+        public bool addData(Product item)
         {
-            string insertStmt = "INSERT INTO " + TABLE_RAM_COMPONENT + " ("
-                    + COLUMN_RAM_COMPONENT_NAME + ", "
-                    + COLUMN_RAM_COMPONENT_PRICE +
+            string insertStmt = "INSERT INTO " + TABLE_PRODUCT + " ("
+                    + COLUMN_PRODUCT_NAME + ", "
+                    + COLUMN_PRODUCT_PRICE + ", "
+                    + COLUMN_PRODUCT_TYPE +
                     " ) VALUES ( "
-                    + "@" + COLUMN_RAM_COMPONENT_NAME + ", "
-                    + "@" + COLUMN_RAM_COMPONENT_PRICE
+                    + "@" + COLUMN_PRODUCT_NAME + ", "
+                    + "@" + COLUMN_PRODUCT_PRICE + ", "
+                    + "@" + COLUMN_PRODUCT_TYPE
                     + " )";
             try
             {
                 SQLiteCommand sQLiteCommand = new SQLiteCommand(insertStmt, mSQLiteConnection);
                 OpenConnection();
-                sQLiteCommand.Parameters.AddWithValue(COLUMN_RAM_COMPONENT_NAME, item.Name);
-                sQLiteCommand.Parameters.AddWithValue(COLUMN_RAM_COMPONENT_PRICE, item.Price);
+                sQLiteCommand.Parameters.AddWithValue(COLUMN_PRODUCT_NAME, item.Name);
+                sQLiteCommand.Parameters.AddWithValue(COLUMN_PRODUCT_PRICE, item.Price);
+                sQLiteCommand.Parameters.AddWithValue(COLUMN_PRODUCT_TYPE, item.Type);
                 sQLiteCommand.ExecuteNonQuery();
                 return true;
             }
@@ -141,19 +153,19 @@ namespace ITWorkstationsInc.Database
 
 
         //*******************************
-        //Update RAM_COMPONENT data
+        //Update PRODUCT data
         //*******************************
-        internal bool UpdateData(RAMComponent item)
+        internal bool UpdateData(Product item)
         {
-            String updateStmt = "UPDATE " + TABLE_RAM_COMPONENT + " SET "
-                 + COLUMN_RAM_COMPONENT_PRICE + " =@" + COLUMN_RAM_COMPONENT_PRICE + " "
-                + " WHERE " + COLUMN_RAM_COMPONENT_ID + " = " + item.Id + " ";
+            String updateStmt = "UPDATE " + TABLE_PRODUCT + " SET "
+                 + COLUMN_PRODUCT_PRICE + " =@" + COLUMN_PRODUCT_PRICE + " "
+                + " WHERE " + COLUMN_PRODUCT_ID + " = " + item.Id + " ";
 
             try
             {
                 SQLiteCommand sQLiteCommand = new SQLiteCommand(updateStmt, mSQLiteConnection);
                 OpenConnection();
-                sQLiteCommand.Parameters.Add(new SQLiteParameter(COLUMN_RAM_COMPONENT_PRICE, item.Price));
+                sQLiteCommand.Parameters.Add(new SQLiteParameter(COLUMN_PRODUCT_PRICE, item.Price));
                 sQLiteCommand.ExecuteNonQuery();
                 return true;
             }
@@ -169,11 +181,11 @@ namespace ITWorkstationsInc.Database
         }
 
         //*******************************
-        //Delete RAM_COMPONENT data (hide)
+        //Delete PRODUCT data (hide)
         //*******************************
-        public bool DeleteData(RAMComponent item)
+        public bool DeleteData(Product item)
         {
-            string deleteStmt = "DELETE FROM " + TABLE_RAM_COMPONENT + " WHERE " + COLUMN_RAM_COMPONENT_ID + " = " + item.Id + " ";
+            string deleteStmt = "DELETE FROM " + TABLE_PRODUCT + " WHERE " + COLUMN_PRODUCT_ID + " = " + item.Id + " ";
 
             try
             {
@@ -193,17 +205,21 @@ namespace ITWorkstationsInc.Database
             }
         }
 
+
+
         public void CreateTable()
         {
-            string createStmt = "CREATE TABLE " + TABLE_RAM_COMPONENT
-                    + "(" + COLUMN_RAM_COMPONENT_ID + " INTEGER PRIMARY KEY, "
-                    + COLUMN_RAM_COMPONENT_NAME + " TEXT UNIQUE NOT NULL, "
-                    + COLUMN_RAM_COMPONENT_PRICE + " REAL NOT NULL )";
+            string createStmt = "CREATE TABLE " + TABLE_PRODUCT
+                    + "(" + COLUMN_PRODUCT_ID + " INTEGER PRIMARY KEY, "
+                    + COLUMN_PRODUCT_NAME + " TEXT UNIQUE NOT NULL, "
+                    + COLUMN_PRODUCT_PRICE + " REAL NOT NULL, "
+                    + COLUMN_PRODUCT_TYPE + " INTEGER NOT NULL )";
 
             SQLiteCommand sQLiteCommand = new SQLiteCommand(createStmt, mSQLiteConnection);
             OpenConnection();
             sQLiteCommand.ExecuteNonQuery();
             CloseConnection();
         }
+
     }
 }
