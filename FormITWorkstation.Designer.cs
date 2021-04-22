@@ -116,7 +116,7 @@ namespace ITWorkstationsInc
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(13, 47);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(661, 474);
+            this.groupBox1.Size = new System.Drawing.Size(661, 367);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Workstation Component";
@@ -372,7 +372,7 @@ namespace ITWorkstationsInc
             this.MainCalculButton.FlatAppearance.BorderSize = 0;
             this.MainCalculButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.MainCalculButton.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.MainCalculButton.Location = new System.Drawing.Point(464, 40);
+            this.MainCalculButton.Location = new System.Drawing.Point(449, 21);
             this.MainCalculButton.Name = "MainCalculButton";
             this.MainCalculButton.Size = new System.Drawing.Size(70, 38);
             this.MainCalculButton.TabIndex = 10;
@@ -388,16 +388,16 @@ namespace ITWorkstationsInc
             this.groupBox2.Controls.Add(this.FeeLabel);
             this.groupBox2.Controls.Add(this.txtMainResultCalcul);
             this.groupBox2.Controls.Add(this.MainCalculButton);
-            this.groupBox2.Location = new System.Drawing.Point(13, 538);
+            this.groupBox2.Location = new System.Drawing.Point(14, 420);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(661, 100);
+            this.groupBox2.Size = new System.Drawing.Size(661, 72);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Calcul";
             // 
             // FeeTextBox
             // 
-            this.FeeTextBox.Location = new System.Drawing.Point(86, 49);
+            this.FeeTextBox.Location = new System.Drawing.Point(86, 30);
             this.FeeTextBox.Name = "FeeTextBox";
             this.FeeTextBox.Size = new System.Drawing.Size(100, 23);
             this.FeeTextBox.TabIndex = 8;
@@ -405,7 +405,7 @@ namespace ITWorkstationsInc
             // 
             // ProfitTextBox
             // 
-            this.ProfitTextBox.Location = new System.Drawing.Point(288, 50);
+            this.ProfitTextBox.Location = new System.Drawing.Point(288, 31);
             this.ProfitTextBox.Name = "ProfitTextBox";
             this.ProfitTextBox.Size = new System.Drawing.Size(100, 23);
             this.ProfitTextBox.TabIndex = 9;
@@ -415,7 +415,7 @@ namespace ITWorkstationsInc
             // 
             this.ProfitLabel.AutoSize = true;
             this.ProfitLabel.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ProfitLabel.Location = new System.Drawing.Point(217, 50);
+            this.ProfitLabel.Location = new System.Drawing.Point(217, 31);
             this.ProfitLabel.Name = "ProfitLabel";
             this.ProfitLabel.Size = new System.Drawing.Size(65, 23);
             this.ProfitLabel.TabIndex = 8;
@@ -425,7 +425,7 @@ namespace ITWorkstationsInc
             // 
             this.FeeLabel.AutoSize = true;
             this.FeeLabel.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.FeeLabel.Location = new System.Drawing.Point(33, 50);
+            this.FeeLabel.Location = new System.Drawing.Point(33, 31);
             this.FeeLabel.Name = "FeeLabel";
             this.FeeLabel.Size = new System.Drawing.Size(46, 23);
             this.FeeLabel.TabIndex = 7;
@@ -435,7 +435,7 @@ namespace ITWorkstationsInc
             // 
             this.txtMainResultCalcul.AutoSize = true;
             this.txtMainResultCalcul.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtMainResultCalcul.Location = new System.Drawing.Point(552, 50);
+            this.txtMainResultCalcul.Location = new System.Drawing.Point(546, 31);
             this.txtMainResultCalcul.Name = "txtMainResultCalcul";
             this.txtMainResultCalcul.Size = new System.Drawing.Size(37, 23);
             this.txtMainResultCalcul.TabIndex = 7;
@@ -446,9 +446,9 @@ namespace ITWorkstationsInc
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.MainRichTextBox);
-            this.panel1.Location = new System.Drawing.Point(681, 47);
+            this.panel1.Location = new System.Drawing.Point(14, 507);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(491, 474);
+            this.panel1.Size = new System.Drawing.Size(661, 334);
             this.panel1.TabIndex = 2;
             // 
             // MainRichTextBox
@@ -458,7 +458,7 @@ namespace ITWorkstationsInc
             this.MainRichTextBox.Location = new System.Drawing.Point(14, 14);
             this.MainRichTextBox.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
             this.MainRichTextBox.Name = "MainRichTextBox";
-            this.MainRichTextBox.Size = new System.Drawing.Size(459, 443);
+            this.MainRichTextBox.Size = new System.Drawing.Size(630, 304);
             this.MainRichTextBox.TabIndex = 0;
             this.MainRichTextBox.Text = "";
             // 
@@ -536,7 +536,7 @@ namespace ITWorkstationsInc
             this.CopyButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CopyButton.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.CopyButton.ForeColor = System.Drawing.Color.White;
-            this.CopyButton.Location = new System.Drawing.Point(1015, 575);
+            this.CopyButton.Location = new System.Drawing.Point(522, 847);
             this.CopyButton.Name = "CopyButton";
             this.CopyButton.Size = new System.Drawing.Size(112, 42);
             this.CopyButton.TabIndex = 11;
@@ -549,7 +549,7 @@ namespace ITWorkstationsInc
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(205)))), ((int)(((byte)(112)))));
-            this.ClientSize = new System.Drawing.Size(1184, 661);
+            this.ClientSize = new System.Drawing.Size(690, 905);
             this.Controls.Add(this.ReloadButton);
             this.Controls.Add(this.CopyButton);
             this.Controls.Add(this.UpdateButton);
