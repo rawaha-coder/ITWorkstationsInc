@@ -63,8 +63,6 @@ namespace ITWorkstationsInc
             this.ProfitLabel = new System.Windows.Forms.Label();
             this.FeeLabel = new System.Windows.Forms.Label();
             this.txtMainResultCalcul = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.MainRichTextBox = new System.Windows.Forms.RichTextBox();
             this.UpdateButton = new System.Windows.Forms.PictureBox();
             this.UpdateItemContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.PCCaseStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -74,6 +72,7 @@ namespace ITWorkstationsInc
             this.RAMStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.NVIDIAStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CopyButton = new System.Windows.Forms.Button();
+            this.TxtResult = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -83,7 +82,6 @@ namespace ITWorkstationsInc
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ReloadButton)).BeginInit();
             this.groupBox2.SuspendLayout();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UpdateButton)).BeginInit();
             this.UpdateItemContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -441,27 +439,6 @@ namespace ITWorkstationsInc
             this.txtMainResultCalcul.TabIndex = 7;
             this.txtMainResultCalcul.Text = "0.0";
             // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel1.Controls.Add(this.MainRichTextBox);
-            this.panel1.Location = new System.Drawing.Point(14, 507);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(661, 334);
-            this.panel1.TabIndex = 2;
-            // 
-            // MainRichTextBox
-            // 
-            this.MainRichTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.MainRichTextBox.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.MainRichTextBox.Location = new System.Drawing.Point(14, 14);
-            this.MainRichTextBox.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
-            this.MainRichTextBox.Name = "MainRichTextBox";
-            this.MainRichTextBox.Size = new System.Drawing.Size(630, 304);
-            this.MainRichTextBox.TabIndex = 0;
-            this.MainRichTextBox.Text = "";
-            // 
             // UpdateButton
             // 
             this.UpdateButton.Image = global::ITWorkstationsInc.Properties.Resources.icons8_store_setting_50;
@@ -544,16 +521,25 @@ namespace ITWorkstationsInc
             this.CopyButton.UseVisualStyleBackColor = false;
             this.CopyButton.Click += new System.EventHandler(this.CopyButton_Click);
             // 
+            // TxtResult
+            // 
+            this.TxtResult.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.TxtResult.Location = new System.Drawing.Point(14, 498);
+            this.TxtResult.Multiline = true;
+            this.TxtResult.Name = "TxtResult";
+            this.TxtResult.Size = new System.Drawing.Size(660, 327);
+            this.TxtResult.TabIndex = 12;
+            // 
             // FormITWorkstation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(205)))), ((int)(((byte)(112)))));
-            this.ClientSize = new System.Drawing.Size(690, 905);
+            this.ClientSize = new System.Drawing.Size(684, 905);
+            this.Controls.Add(this.TxtResult);
             this.Controls.Add(this.ReloadButton);
             this.Controls.Add(this.CopyButton);
             this.Controls.Add(this.UpdateButton);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "FormITWorkstation";
@@ -571,10 +557,10 @@ namespace ITWorkstationsInc
             ((System.ComponentModel.ISupportInitialize)(this.ReloadButton)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.UpdateButton)).EndInit();
             this.UpdateItemContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -590,8 +576,6 @@ namespace ITWorkstationsInc
         private System.Windows.Forms.Label ProfitLabel;
         private System.Windows.Forms.Label FeeLabel;
         private System.Windows.Forms.Label txtMainResultCalcul;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.RichTextBox MainRichTextBox;
         private System.Windows.Forms.PictureBox UpdateButton;
         private System.Windows.Forms.ContextMenuStrip UpdateItemContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem PCCaseStripMenuItem;
@@ -626,6 +610,7 @@ namespace ITWorkstationsInc
         private System.Windows.Forms.TextBox FeeTextBox;
         private System.Windows.Forms.Button CopyButton;
         private System.Windows.Forms.ToolStripMenuItem SSDStripMenuItem;
+        private System.Windows.Forms.TextBox TxtResult;
     }
 }
 
