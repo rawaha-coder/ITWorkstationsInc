@@ -82,7 +82,6 @@ namespace ITWorkstationsInc
             mRAMName = "";
             mNVIDIAName = "";
 
-            MainRichTextBox.Text = "";
         }
 
         public void ReLoadLists()
@@ -225,33 +224,33 @@ namespace ITWorkstationsInc
             {
 
                 ProductForm AddItemForm = new ProductForm(this, Constant.CASEBOX);
-                AddItemForm.ShowAddForm();
+                AddItemForm.ShowDialog();
 
             }
             else if (e.ClickedItem.Name == CPUStripMenuItem.Name)
             {
                 ProductForm AddItemForm = new ProductForm(this, Constant.CPU);
-                AddItemForm.ShowAddForm();
+                AddItemForm.ShowDialog();
             }
             else if (e.ClickedItem.Name == SSDStripMenuItem.Name)
             {
                 ProductForm AddItemForm = new ProductForm(this, Constant.SSD);
-                AddItemForm.ShowAddForm();
+                AddItemForm.ShowDialog();
             }
             else if (e.ClickedItem.Name == HDDStripMenuItem.Name)
             {
                 ProductForm AddItemForm = new ProductForm(this, Constant.HDD);
-                AddItemForm.ShowAddForm();
+                AddItemForm.ShowDialog();
             }
             else if (e.ClickedItem.Name == RAMStripMenuItem.Name)
             {
                 ProductForm AddItemForm = new ProductForm(this, Constant.RAM);
-                AddItemForm.ShowAddForm();
+                AddItemForm.ShowDialog();
             }
             else if (e.ClickedItem.Name == NVIDIAStripMenuItem.Name)
             {
                 ProductForm AddItemForm = new ProductForm(this, Constant.NVIDIA);
-                AddItemForm.ShowAddForm();
+                AddItemForm.ShowDialog();
             }
         }
 
@@ -403,19 +402,19 @@ namespace ITWorkstationsInc
 
         private void GetArticle()
         {
-            MainRichTextBox.Clear();
-            MainRichTextBox.Text += "PC: " + mCaseBoxName + ".\n";
-            MainRichTextBox.Text += "CPU: " + mCPU1Name + ".\n";
-            MainRichTextBox.Text += "SDD: " + mSSDName + ".\n";
-            MainRichTextBox.Text += "HDD: " + mHDDDName + ".\n";
-            MainRichTextBox.Text += "RAM: " + mRAMName + ".\n";
-            MainRichTextBox.Text += "Nvidia: " + mNVIDIAName + ".";
+            TxtResult.Clear();
+            TxtResult.Text += "PC: " + mCaseBoxName + Environment.NewLine;
+            TxtResult.Text += "CPU: " + mCPU1Name + Environment.NewLine;
+            TxtResult.Text += "SDD: " + mSSDName + Environment.NewLine;
+            TxtResult.Text += "HDD: " + mHDDDName + Environment.NewLine;
+            TxtResult.Text += "RAM: " + mRAMName + Environment.NewLine;
+            TxtResult.Text += "Nvidia: " + mNVIDIAName + Environment.NewLine;
         }
 
         private void CopyButton_Click(object sender, EventArgs e)
         {
-            MainRichTextBox.SelectAll();
-            MainRichTextBox.Copy();
+            TxtResult.SelectAll();
+            TxtResult.Copy();
         }
 
 
@@ -476,5 +475,6 @@ namespace ITWorkstationsInc
                 e.Handled = true;
             }
         }
+
     }
 }
