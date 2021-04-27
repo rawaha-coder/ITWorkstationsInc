@@ -403,12 +403,12 @@ namespace ITWorkstationsInc
         private void GetArticle()
         {
             TxtResult.Clear();
-            TxtResult.Text += "PC: " + mCaseBoxName + Environment.NewLine;
-            TxtResult.Text += "CPU: " + mCPU1Name + Environment.NewLine;
-            TxtResult.Text += "SDD: " + mSSDName + Environment.NewLine;
+            TxtResult.Text += "PC Model: " + mCaseBoxName + Environment.NewLine;
+            TxtResult.Text += "Prosessor: " + mCPU1Name + Environment.NewLine;
+            TxtResult.Text += "Memory: " + mRAMName + Environment.NewLine;
+            TxtResult.Text += "SSD: " + mSSDName + Environment.NewLine;
             TxtResult.Text += "HDD: " + mHDDDName + Environment.NewLine;
-            TxtResult.Text += "RAM: " + mRAMName + Environment.NewLine;
-            TxtResult.Text += "Nvidia: " + mNVIDIAName + Environment.NewLine;
+            TxtResult.Text += "Video Card: " + mNVIDIAName + Environment.NewLine;
         }
 
         private void CopyButton_Click(object sender, EventArgs e)
@@ -476,5 +476,10 @@ namespace ITWorkstationsInc
             }
         }
 
+        private void buttonAllProduct_Click(object sender, EventArgs e)
+        {
+            AllProduct allProduct = new AllProduct(this);
+            allProduct.ShowDialog();
+        }
     }
 }
