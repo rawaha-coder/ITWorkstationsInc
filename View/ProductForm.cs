@@ -26,29 +26,6 @@ namespace ITWorkstationsInc.View
             InitializeComponent();
         }
 
-        public static ProductForm getInstance(FormITWorkstation formITWorkstation, int type)
-        {
-            if (instance == null)
-            {
-                instance = new ProductForm(formITWorkstation, type);
-            }
-            return instance;
-        }
-
-        public void ShowAddForm()
-        {
-            if (instance != null)
-            {
-                instance.BringToFront();
-            }
-            else
-            {
-                instance = new ProductForm(mFormITWorkstation, type);
-
-            }
-            instance.Show();
-        }
-
         private void ProductForm_Load(object sender, EventArgs e)
         {
             initForm(type);

@@ -73,6 +73,7 @@ namespace ITWorkstationsInc
             this.NVIDIAStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CopyButton = new System.Windows.Forms.Button();
             this.TxtResult = new System.Windows.Forms.TextBox();
+            this.btnAllProduct = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -523,19 +524,34 @@ namespace ITWorkstationsInc
             // 
             // TxtResult
             // 
-            this.TxtResult.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.TxtResult.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.TxtResult.Location = new System.Drawing.Point(14, 498);
             this.TxtResult.Multiline = true;
             this.TxtResult.Name = "TxtResult";
             this.TxtResult.Size = new System.Drawing.Size(660, 327);
             this.TxtResult.TabIndex = 12;
             // 
+            // btnAllProduct
+            // 
+            this.btnAllProduct.BackColor = System.Drawing.Color.Red;
+            this.btnAllProduct.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnAllProduct.FlatAppearance.BorderSize = 0;
+            this.btnAllProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAllProduct.Location = new System.Drawing.Point(522, 12);
+            this.btnAllProduct.Name = "btnAllProduct";
+            this.btnAllProduct.Size = new System.Drawing.Size(75, 31);
+            this.btnAllProduct.TabIndex = 13;
+            this.btnAllProduct.Text = "All Product";
+            this.btnAllProduct.UseVisualStyleBackColor = false;
+            this.btnAllProduct.Click += new System.EventHandler(this.buttonAllProduct_Click);
+            // 
             // FormITWorkstation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(205)))), ((int)(((byte)(112)))));
-            this.ClientSize = new System.Drawing.Size(684, 905);
+            this.ClientSize = new System.Drawing.Size(684, 913);
+            this.Controls.Add(this.btnAllProduct);
             this.Controls.Add(this.TxtResult);
             this.Controls.Add(this.ReloadButton);
             this.Controls.Add(this.CopyButton);
@@ -611,6 +627,7 @@ namespace ITWorkstationsInc
         private System.Windows.Forms.Button CopyButton;
         private System.Windows.Forms.ToolStripMenuItem SSDStripMenuItem;
         private System.Windows.Forms.TextBox TxtResult;
+        private System.Windows.Forms.Button btnAllProduct;
     }
 }
 

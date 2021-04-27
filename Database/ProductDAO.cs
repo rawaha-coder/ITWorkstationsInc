@@ -75,7 +75,7 @@ namespace ITWorkstationsInc.Database
 
 
         //*******************************
-        //Get all Product data
+        //Get all Product data by type
         //*******************************
         public List<Product> getData(int type)
         {
@@ -83,6 +83,46 @@ namespace ITWorkstationsInc.Database
             var selectStmt = "SELECT * FROM " + TABLE_PRODUCT
                 + " WHERE " + COLUMN_PRODUCT_TYPE + " = " + type + " "
                 + " ORDER BY " + COLUMN_PRODUCT_NAME + " ASC;";
+
+            try
+            {
+                SQLiteCommand sQLiteCommand = new SQLiteCommand(selectStmt, mSQLiteConnection);
+                OpenConnection();
+                SQLiteDataReader result = sQLiteCommand.ExecuteReader();
+                if (result.HasRows)
+                {
+                    while (result.Read())
+                    {
+                        Product item = new Product
+                        {
+                            Id = Convert.ToInt32((result[COLUMN_PRODUCT_ID]).ToString()),
+                            Name = (string)result[COLUMN_PRODUCT_NAME],
+                            Price = (double)result[COLUMN_PRODUCT_PRICE],
+                            Type = Convert.ToInt32((result[COLUMN_PRODUCT_TYPE]).ToString())
+                        };
+                        list.Add(item);
+                    }
+                }
+                return list;
+            }
+            catch (SQLiteException e)
+            {
+                Console.WriteLine(e.StackTrace);
+                return list;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+
+        //*******************************
+        //Get all Product data
+        //*******************************
+        public List<Product> getAllProduct()
+        {
+            List<Product> list = new List<Product>();
+            var selectStmt = "SELECT * FROM " + TABLE_PRODUCT + " ORDER BY " + COLUMN_PRODUCT_NAME + " ASC;";
 
             try
             {
@@ -206,6 +246,35 @@ namespace ITWorkstationsInc.Database
         }
 
 
+        //*******************************
+        //Update PRODUCT data
+        //*******************************
+        internal bool UpdateProduct(Product item)
+        {
+            String updateStmt = "UPDATE " + TABLE_PRODUCT + " SET "
+                 + COLUMN_PRODUCT_NAME + " =@" + COLUMN_PRODUCT_NAME + ", "
+                 + COLUMN_PRODUCT_PRICE + " =@" + COLUMN_PRODUCT_PRICE + " "
+                + " WHERE " + COLUMN_PRODUCT_ID + " = " + item.Id + " ";
+
+            try
+            {
+                SQLiteCommand sQLiteCommand = new SQLiteCommand(updateStmt, mSQLiteConnection);
+                OpenConnection();
+                sQLiteCommand.Parameters.Add(new SQLiteParameter(COLUMN_PRODUCT_NAME, item.Name));
+                sQLiteCommand.Parameters.Add(new SQLiteParameter(COLUMN_PRODUCT_PRICE, item.Price));
+                sQLiteCommand.ExecuteNonQuery();
+                return true;
+            }
+            catch (SQLiteException e)
+            {
+                Console.WriteLine(e.StackTrace);
+                return false;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
 
         public void CreateTable()
         {
