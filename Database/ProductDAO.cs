@@ -122,7 +122,7 @@ namespace ITWorkstationsInc.Database
         public List<Product> getAllProduct()
         {
             List<Product> list = new List<Product>();
-            var selectStmt = "SELECT * FROM " + TABLE_PRODUCT + " ORDER BY " + COLUMN_PRODUCT_NAME + " ASC;";
+            var selectStmt = "SELECT * FROM " + TABLE_PRODUCT + " ORDER BY " + COLUMN_PRODUCT_TYPE + " ASC;";
 
             try
             {
