@@ -52,7 +52,6 @@ namespace ITWorkstationsInc.View
             try
             {
                 productDAO.UpdateProduct(product);
-                MessageBox.Show("Product Updated");
                 mFormITWorkstation.ReLoadLists();
             }
             catch

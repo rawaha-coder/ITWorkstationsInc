@@ -406,8 +406,7 @@ namespace ITWorkstationsInc
             TxtResult.Text += "PC Model: " + mCaseBoxName + Environment.NewLine;
             TxtResult.Text += "CPU: " + mCPU1Name + Environment.NewLine;
             TxtResult.Text += "Memory: " + mRAMName + Environment.NewLine;
-            TxtResult.Text += "Storage 1: " + mSSDName + Environment.NewLine;
-            TxtResult.Text += "Storage 2: " + mHDDDName + Environment.NewLine;
+            TxtResult.Text += "Storage: " + mSSDName +  " + " + mHDDDName +  Environment.NewLine;
             TxtResult.Text += "Video Card: " + mNVIDIAName + Environment.NewLine;
         }
 

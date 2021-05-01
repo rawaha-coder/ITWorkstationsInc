@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Data.SQLite;
 using ITWorkstationsInc.Model;
+using System.Windows.Forms;
 
 namespace ITWorkstationsInc.Database
 {
@@ -263,11 +264,13 @@ namespace ITWorkstationsInc.Database
                 sQLiteCommand.Parameters.Add(new SQLiteParameter(COLUMN_PRODUCT_NAME, item.Name));
                 sQLiteCommand.Parameters.Add(new SQLiteParameter(COLUMN_PRODUCT_PRICE, item.Price));
                 sQLiteCommand.ExecuteNonQuery();
+                MessageBox.Show("Product Updated");
                 return true;
             }
             catch (SQLiteException e)
             {
                 Console.WriteLine(e.StackTrace);
+                MessageBox.Show("Product Not Updated");
                 return false;
             }
             finally
